@@ -21,6 +21,6 @@ export default function Page() {
 
 Import `@friendly-ui/react/styles.css` in your application's global CSS. Tailwind v4 users can also import `@friendly-ui/react/tailwind.css` after Tailwind and the component styles. Customize CSS variables in your own theme file.
 
-Components work in Server Components by default. Import them into a small `'use client'` wrapper when adding state or event handlers. React 19 is required.
+Default exports work in Server Components by default. Modal, Tabs, and Toast use the explicit `@friendly-ui/react/client` entry point. Import them into a small `'use client'` wrapper when adding state or event handlers. React 19 is required.
 
 [Source and issues](https://github.com/MartineBoulanger/FriendlyUI)

@@ -12,6 +12,14 @@
     --fui-ring: #717171;
     --fui-radius: 0.75rem;
     --fui-font: Arial, Helvetica, sans-serif;
+    --fui-heading-1: 2.25rem;
+    --fui-heading-2: 1.75rem;
+    --fui-heading-3: 1.25rem;
+    --fui-heading-4: 1rem;
+    --fui-heading-5: 0.875rem;
+    --fui-heading-6: 0.75rem;
+    --fui-danger: #dc2626;
+    --fui-success: #15803d;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {

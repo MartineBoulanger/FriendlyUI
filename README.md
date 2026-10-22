@@ -6,7 +6,7 @@ A small UI package for the Next.js App Router, with server-compatible components
 
 ## Run locally
 
-Requires Node.js 20.9+ and npm.
+Requires Node.js 22.13+ and npm for development and tests.
 
 ```sh
 npm install
@@ -37,7 +37,7 @@ export default function Page() {
 }
 ```
 
-Available: Button (primary/secondary/ghost, sm/md/lg), Card, Input, Textarea, Label, Badge, Accordion. Components accept their native HTML props, including `className`, `style`, ARIA attributes, and React 19 refs. Associate inputs with labels and supply meaningful accessible names as you would with HTML. Buttons default to `type="button"`; use `type="submit"` in forms.
+Server-compatible components: Button, Card, Input, Textarea, Label, Badge, Accordion, Checkbox, Radio, Switch, Select (also Dropdown), Heading, Separator (also Divider), Sidebar, Search, Avatar, Pagination, and composable Table elements. These accept native HTML props, including `className`, `style`, ARIA attributes, and React 19 refs. Associate inputs with labels and supply meaningful accessible names as you would with HTML. Buttons default to `type="button"`; use `type="submit"` in forms.
 
 ## Make a component interactive
 
@@ -89,13 +89,34 @@ Tailwind is optional. Import `@friendly-ui/react/styles.css` once in your root l
 
 ## Structure and scope
 
-- `packages/ui`: publishable ESM package, compiled JavaScript, declarations, and CSS. React is a peer dependency; no runtime component dependencies.
+- `packages/ui`: publishable ESM package, compiled JavaScript, declarations, and CSS. React and React DOM are peer dependencies; no third-party component runtime dependencies.
 - `examples/next`: a real App Router app with a server page and a small client counter.
 - `scripts`: build helpers and HTML contract tests.
 
-`npm run build -w @friendly-ui/react` builds the package; `npm pack -w @friendly-ui/react` creates an installable tarball. Next.js is only required by the example, so the primitives also work in React apps. The build uses TypeScript rather than bundling the library, preserving module directives for future interactive entry points.
+`npm run build -w @friendly-ui/react` builds the package; `npm pack -w @friendly-ui/react` creates an installable tarball. Next.js is only required by the example, so the primitives also work in React apps. The build uses TypeScript rather than bundling the library, preserving the client entry point’s module directive.
 
-Prefer native HTML interactions first. Future dialogs, menus, tabs, and other complex widgets should get explicit client entry points and thorough keyboard/focus testing. Do not add a client directive to the default package entry point.
+## Interactive components
+
+Modal, Tabs, and Toast are available from a separate client entry point:
+
+```tsx
+import { Modal, Tabs } from '@friendly-ui/react/client';
+
+<Modal title="Settings" trigger="Open settings" size="sm">
+  <p>Your settings form.</p>
+</Modal>
+
+<Tabs label="Project" items={[
+  { value: 'overview', label: 'Overview', content: <p>Overview</p> },
+  { value: 'settings', label: 'Settings', content: <p>Settings</p> },
+]} />
+```
+
+A Server Component may render these with serializable props and server-rendered children. Callbacks and controlled state belong in a client wrapper. Modal uses native dialog focus handling; Tabs supports arrows, Home/End, and disabled items. Toast is a controlled notification with a dismiss button, an optional timer, and hover/focus pause. It needs no global provider. See each component’s documentation for props and live examples.
+
+Checkbox, Radio, Switch, and Select keep native form behavior without hydration. Search is a native search field; your form or client wrapper decides what to search. Heading accepts `as="h1"` through `as="h6"`. Sidebar supports left/right and sm/md/lg, and becomes full-width within its parent at viewport widths up to 425px. Use a full-width wrapping flex parent to span the screen. Pagination uses plain links with a URL builder. Table is a set of native HTML primitives, not a data-grid dependency.
+
+Prefer native HTML interactions first. Keep client components behind explicit imports; do not add a client directive to the default entry point.
 
 Architecture references: [Next.js server/client boundaries](https://nextjs.org/docs/app/getting-started/server-and-client-components), [Tailwind theme variables](https://tailwindcss.com/docs/theme).
 

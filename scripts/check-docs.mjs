@@ -11,7 +11,9 @@ function walk(dir) {
   });
 }
 const pages = walk(root).filter(file => file.endsWith('.html'));
-assert.ok(pages.length >= 11, 'Expected home page and ten documentation pages');
+for (const slug of ['installation', 'theming', 'server-and-client', 'button', 'card', 'input', 'textarea', 'label', 'badge', 'accordion', 'checkbox', 'radio', 'select', 'heading', 'switch', 'separator', 'sidebar', 'search', 'modal', 'tabs', 'avatar', 'pagination', 'table', 'toast']) {
+  assert.ok(existsSync(join(root, 'docs', slug, 'index.html')), `Missing documentation page: ${slug}`);
+}
 let checked = 0;
 for (const file of pages) {
   const html = readFileSync(file, 'utf8');
