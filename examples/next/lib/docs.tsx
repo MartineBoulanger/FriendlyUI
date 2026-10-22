@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import {
   Accordion,
   Badge,
+  Chip,
+  Avatar,
   Button,
   Card,
   Input,
@@ -286,24 +288,81 @@ export const docs: Doc[] = [
     ),
   },
   {
-    slug: "badge",
-    title: "Badge",
+    slug: "chip",
+    title: "Chip",
     group: "Components",
-    description: "A small piece of context, close to the content.",
-    code: `import { Badge } from '@friendly-ui/react';\n\n<Badge>In progress</Badge>`,
+    description: "A compact label for status, categories, and metadata.",
+    code: `import { Chip } from '@friendly-ui/react';\n\n<Chip>In progress</Chip>`,
     preview: (
       <div className="preview-row">
-        <Badge>In progress</Badge>
-        <Badge>Version 0.1</Badge>
+        <Chip>In progress</Chip>
+        <Chip>Version 0.1</Chip>
       </div>
     ),
     content: (
       <p>
-        Renders a styled span. Use for short status text or metadata. It is not
-        an interactive control or a live announcement; provide appropriate
-        semantics when announcing dynamic status updates.
+        Previously named Badge. Chip renders a styled span for short labels. Use
+        Badge when you need a count or dot over an avatar or control. Chip is
+        not interactive and does not announce changes automatically.
       </p>
     ),
+  },
+  {
+    slug: "badge",
+    title: "Badge",
+    group: "Components",
+    description: "A count or status dot over an avatar, button, or icon.",
+    code: `import { Avatar, Badge, Button } from '@friendly-ui/react';\n\n<Badge content={3} label="3 unread notifications">\n  <Button variant="secondary" aria-label="Notifications, 3 unread">Notifications</Button>\n</Badge>\n\n<Badge dot label="Online" position="bottom-right">\n  <Avatar alt="Ada Lovelace" />\n</Badge>`,
+    preview: (
+      <div className="preview-row" style={{ gap: "2rem", padding: ".5rem" }}>
+        <Badge content={3} label="3 unread notifications">
+          <Button variant="secondary" aria-label="Notifications, 3 unread">Notifications</Button>
+        </Badge>
+        <Badge dot label="Online" position="bottom-right">
+          <Avatar alt="Ada Lovelace" />
+        </Badge>
+        <Badge content={120}>
+          <Button variant="secondary">Updates</Button>
+        </Badge>
+      </div>
+    ),
+    content: (
+      <>
+        <p>
+          Wrap an avatar or control in Badge. The marker is positioned over its
+          corner and does not intercept pointer events. A numeric count above
+          max displays as max+ while its accessible name retains the full count.
+        </p>
+        <p>
+          Zero counts are hidden by default; set showZero to display them. With
+          no content, the marker is hidden unless dot is enabled. Set label to
+          explain the indicator, such as “3 unread notifications” or “Online”.
+          An unlabeled dot is decorative.
+        </p>
+        <p>
+          A marker on a button sits outside the button’s accessible name.
+          Include the count or status in the button’s aria-label when the
+          control needs that information. Badge is not a live region;
+          announce dynamic updates separately when necessary.
+        </p>
+        <p>
+          The former pill-shaped Badge is now Chip. Customize the marker with
+          --fui-badge-background and --fui-badge-foreground.
+        </p>
+      </>
+    ),
+    props: [
+      ["content", "number | string", "—"],
+      ["dot", "boolean", "false"],
+      [
+        "position",
+        "top-right | top-left | bottom-right | bottom-left",
+        "top-right",
+      ],
+      ["max", "number", "99"],
+      ["showZero", "boolean", "false"],
+      ["label", "string, accessible marker description", "—"],
+    ],
   },
   {
     slug: "accordion",

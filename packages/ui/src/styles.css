@@ -7,6 +7,7 @@
     .fui-card,
     .fui-input,
     .fui-label,
+    .fui-chip,
     .fui-badge,
     .fui-accordion
   ) {
@@ -95,7 +96,7 @@
     font-size: 0.875rem;
     font-weight: 500;
   }
-  .fui-badge {
+  .fui-chip {
     display: inline-flex;
     padding: 0.25rem 0.625rem;
     border: 1px solid var(--fui-border);
@@ -509,5 +510,60 @@
   }
   .fui-toast[data-variant="success"] {
     border-color: var(--fui-success, #15803d);
+  }
+}
+
+@layer components {
+  .fui-badge {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    isolation: isolate;
+  }
+  .fui-badge-indicator {
+    position: absolute;
+    z-index: 1;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.3rem;
+    border: 2px solid var(--fui-background);
+    border-radius: 999px;
+    background: var(--fui-badge-background, var(--fui-primary));
+    color: var(--fui-badge-foreground, var(--fui-primary-foreground));
+    font-size: 0.625rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .fui-badge[data-position^="top"] > .fui-badge-indicator {
+    top: 0;
+  }
+  .fui-badge[data-position^="bottom"] > .fui-badge-indicator {
+    bottom: 0;
+  }
+  .fui-badge[data-position$="right"] > .fui-badge-indicator {
+    right: 0;
+    transform: translate(40%, -40%);
+  }
+  .fui-badge[data-position$="left"] > .fui-badge-indicator {
+    left: 0;
+    transform: translate(-40%, -40%);
+  }
+  .fui-badge[data-position="bottom-right"] > .fui-badge-indicator {
+    transform: translate(40%, 40%);
+  }
+  .fui-badge[data-position="bottom-left"] > .fui-badge-indicator {
+    transform: translate(-40%, 40%);
+  }
+  .fui-badge-indicator[data-dot] {
+    width: 0.625rem;
+    min-width: 0.625rem;
+    height: 0.625rem;
+    padding: 0;
   }
 }

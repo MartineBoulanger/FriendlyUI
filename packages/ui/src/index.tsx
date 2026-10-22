@@ -47,8 +47,58 @@ export function Label({ className, ...props }: ComponentPropsWithRef<"label">) {
   return <label {...props} className={cx("fui-label", className)} />;
 }
 
-export function Badge({ className, ...props }: ComponentPropsWithRef<"span">) {
-  return <span {...props} className={cx("fui-badge", className)} />;
+export function Chip({ className, ...props }: ComponentPropsWithRef<"span">) {
+  return <span {...props} className={cx("fui-chip", className)} />;
+}
+
+export type BadgeProps = Omit<ComponentPropsWithRef<"span">, "content"> & {
+  content?: number | string;
+  dot?: boolean;
+  position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
+  max?: number;
+  showZero?: boolean;
+  label?: string;
+};
+/** Wrap an avatar or control; the marker is an indicator, not a second control. */
+export function Badge({
+  children,
+  content,
+  dot = false,
+  position = "top-right",
+  max = 99,
+  showZero = false,
+  label,
+  className,
+  ...props
+}: BadgeProps) {
+  const visible =
+    dot ||
+    (content !== undefined && content !== "" && (content !== 0 || showZero));
+  const limit = Number.isFinite(max) ? Math.max(0, Math.floor(max)) : 99;
+  const text =
+    typeof content === "number" && content > limit ? `${limit}+` : content;
+  const accessibleLabel =
+    label ?? (typeof content === "number" ? String(content) : undefined);
+  return (
+    <span
+      {...props}
+      className={cx("fui-badge", className)}
+      data-position={position}
+    >
+      {children}
+      {visible && (
+        <span
+          className="fui-badge-indicator"
+          data-dot={dot || undefined}
+          role={accessibleLabel ? "img" : undefined}
+          aria-label={accessibleLabel}
+          aria-hidden={dot && !accessibleLabel ? true : undefined}
+        >
+          {!dot && text}
+        </span>
+      )}
+    </span>
+  );
 }
 
 type AccordionProps = Omit<ComponentPropsWithRef<"details">, "title"> & {

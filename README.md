@@ -37,7 +37,7 @@ export default function Page() {
 }
 ```
 
-Server-compatible components: Button, Card, Input, Textarea, Label, Badge, Accordion, Checkbox, Radio, Switch, Select (also Dropdown), Heading, Separator (also Divider), Sidebar, Search, Avatar, Pagination, and composable Table elements. These accept native HTML props, including `className`, `style`, ARIA attributes, and React 19 refs. Associate inputs with labels and supply meaningful accessible names as you would with HTML. Buttons default to `type="button"`; use `type="submit"` in forms.
+Server-compatible components: Button, Card, Input, Textarea, Label, Chip, Badge, Accordion, Checkbox, Radio, Switch, Select (also Dropdown), Heading, Separator (also Divider), Sidebar, Search, Avatar, Pagination, and composable Table elements. These accept native HTML props, including `className`, `style`, ARIA attributes, and React 19 refs. Associate inputs with labels and supply meaningful accessible names as you would with HTML. Buttons default to `type="button"`; use `type="submit"` in forms.
 
 ## Make a component interactive
 
@@ -144,3 +144,5 @@ The workflow runs component tests, builds the package and static documentation, 
 GitHub Pages serves static assets: component HTML is produced during the build and interactive client examples run in the browser. Live Server Actions and request-time rendering require a separate server host. The library itself remains compatible with those features in consumers’ Next.js apps.
 
 The documentation is hosted separately on GitHub Pages. Package consumers can use the online documentation without running the documentation app locally. The package homepage metadata points to the hosted site.
+
+Chip is the compact label previously named Badge. Badge now wraps another element and overlays a count or status dot: `<Badge content={3}><Avatar alt="Ada Lovelace" /></Badge>`. Both remain server-compatible.
