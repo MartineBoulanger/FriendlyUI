@@ -1,14 +1,41 @@
 {
-  "name": "@friendly-ui/react", "version": "0.1.0", "type": "module",
+  "name": "@friendly-ui/react",
+  "version": "0.1.0",
+  "type": "module",
   "description": "Small server-first React components for Next.js.",
-  "files": ["dist"], "sideEffects": ["**/*.css"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    ".": {"types": "./dist/index.d.ts", "import": "./dist/index.js", "default": "./dist/index.js"},
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./theme.css": "./dist/theme.css",
     "./tailwind.css": "./dist/tailwind.css"
   },
-  "scripts": {"build": "tsc -p tsconfig.json && node ../../scripts/copy-css.mjs", "typecheck": "tsc --noEmit"},
-  "peerDependencies": {"react": "^19.0.0"},
-  "devDependencies": {"react": "^19.0.0"}
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ../../scripts/copy-css.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0"
+  },
+  "homepage": "https://martineboulanger.github.io/FriendlyUI/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartineBoulanger/FriendlyUI.git",
+    "directory": "packages/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/MartineBoulanger/FriendlyUI/issues"
+  }
 }

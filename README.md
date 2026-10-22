@@ -1,5 +1,7 @@
 # Friendly UI
 
+[Online documentation](https://martineboulanger.github.io/FriendlyUI/) · [Component reference](https://martineboulanger.github.io/FriendlyUI/docs/button/)
+
 A small UI package for the Next.js App Router, with server-compatible components and opt-in client interactivity. This is a working foundation, not a complete design system. The package name is local and has not been published or checked for availability.
 
 ## Run locally
@@ -120,4 +122,4 @@ The workflow runs component tests, builds the package and static documentation, 
 
 GitHub Pages serves static assets: component HTML is produced during the build and interactive client examples run in the browser. Live Server Actions and request-time rendering require a separate server host. The library itself remains compatible with those features in consumers’ Next.js apps.
 
-No GitHub deployment has been performed from this workspace yet.
+The documentation is hosted separately on GitHub Pages. Package consumers can use the online documentation without running the documentation app locally. The package homepage metadata points to the hosted site.
