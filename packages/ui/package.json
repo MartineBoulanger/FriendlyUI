@@ -1,0 +1,14 @@
+{
+  "name": "@friendly-ui/react", "version": "0.1.0", "type": "module",
+  "description": "Small server-first React components for Next.js.",
+  "files": ["dist"], "sideEffects": ["**/*.css"],
+  "exports": {
+    ".": {"types": "./dist/index.d.ts", "import": "./dist/index.js", "default": "./dist/index.js"},
+    "./styles.css": "./dist/styles.css",
+    "./theme.css": "./dist/theme.css",
+    "./tailwind.css": "./dist/tailwind.css"
+  },
+  "scripts": {"build": "tsc -p tsconfig.json && node ../../scripts/copy-css.mjs", "typecheck": "tsc --noEmit"},
+  "peerDependencies": {"react": "^19.0.0"},
+  "devDependencies": {"react": "^19.0.0"}
+}

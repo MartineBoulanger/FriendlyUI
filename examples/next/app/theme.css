@@ -1,0 +1,6 @@
+/* Your theme lives here. Change any token; every component inherits it. */
+:root {
+  --fui-radius: 0.75rem;
+  /* --fui-primary: #2563eb;
+     --fui-primary-foreground: #ffffff; */
+}

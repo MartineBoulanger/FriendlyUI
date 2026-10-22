@@ -1,0 +1,21 @@
+{
+  "name": "friendly-ui-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "dev": "npm run build -w @friendly-ui/react && npm run dev -w friendly-ui-example",
+    "build": "npm run build -w @friendly-ui/react && npm run build -w friendly-ui-example",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run build -w @friendly-ui/react && node --test scripts/*.test.mjs",
+    "check:docs": "node scripts/check-docs.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

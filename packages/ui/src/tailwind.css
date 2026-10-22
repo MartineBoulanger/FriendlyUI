@@ -1,0 +1,12 @@
+/* Optional Tailwind v4 bridge. The components also work without Tailwind. */
+@theme inline {
+  --color-background: var(--fui-background);
+  --color-foreground: var(--fui-foreground);
+  --color-surface: var(--fui-surface);
+  --color-muted: var(--fui-muted);
+  --color-primary: var(--fui-primary);
+  --color-primary-foreground: var(--fui-primary-foreground);
+  --color-border: var(--fui-border);
+  --radius-ui: var(--fui-radius);
+  --font-ui: var(--fui-font);
+}
