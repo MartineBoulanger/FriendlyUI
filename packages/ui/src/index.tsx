@@ -26,6 +26,39 @@ export function Button({
   );
 }
 
+export type CloseButtonProps = Omit<ButtonProps, "children"> & {
+  label?: string;
+};
+/** Shared, theme-colored dismiss control with a 44px touch target. */
+export function CloseButton({
+  label = "Close",
+  className,
+  ...props
+}: CloseButtonProps) {
+  return (
+    <Button
+      variant="ghost"
+      {...props}
+      aria-label={props["aria-label"] ?? label}
+      className={cx("fui-close-button", className)}
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="m6 6 12 12M18 6 6 18" />
+      </svg>
+    </Button>
+  );
+}
+
 export function Card({ className, ...props }: ComponentPropsWithRef<"div">) {
   return <div {...props} className={cx("fui-card", className)} />;
 }

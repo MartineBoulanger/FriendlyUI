@@ -20,6 +20,18 @@
     --fui-heading-6: 0.75rem;
     --fui-danger: #dc2626;
     --fui-success: #15803d;
+    --fui-toast-error-background: #fef2f2;
+    --fui-toast-error-foreground: #991b1b;
+    --fui-toast-error-border: #fca5a5;
+    --fui-toast-warning-background: #fffbeb;
+    --fui-toast-warning-foreground: #92400e;
+    --fui-toast-warning-border: #fcd34d;
+    --fui-toast-success-background: #f0fdf4;
+    --fui-toast-success-foreground: #166534;
+    --fui-toast-success-border: #86efac;
+    --fui-toast-info-background: #eff6ff;
+    --fui-toast-info-foreground: #1e40af;
+    --fui-toast-info-border: #93c5fd;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -32,6 +44,18 @@
       --fui-primary: #ededed;
       --fui-primary-foreground: #0a0a0a;
       --fui-ring: #a1a1a1;
+      --fui-toast-error-background: #2b1111;
+      --fui-toast-error-foreground: #fecaca;
+      --fui-toast-error-border: #7f1d1d;
+      --fui-toast-warning-background: #2b200b;
+      --fui-toast-warning-foreground: #fde68a;
+      --fui-toast-warning-border: #854d0e;
+      --fui-toast-success-background: #0d2517;
+      --fui-toast-success-foreground: #bbf7d0;
+      --fui-toast-success-border: #166534;
+      --fui-toast-info-background: #10213c;
+      --fui-toast-info-foreground: #bfdbfe;
+      --fui-toast-info-border: #1e40af;
     }
   }
 }

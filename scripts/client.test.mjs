@@ -278,3 +278,74 @@ test("toast can pause on focus, reopen, and receive a new duration", async (t) =
   await act(() => t.mock.timers.tick(1));
   assert.equal(value, false);
 });
+
+test("toast supports six positions, four semantic types, and an optional paused countdown", async () => {
+  const props = {
+    open: true,
+    onOpenChange: () => {},
+    title: "Notice",
+    duration: 4000,
+    showTimer: true,
+  };
+  for (const position of [
+    "top-left",
+    "top-center",
+    "top-right",
+    "bottom-left",
+    "bottom-center",
+    "bottom-right",
+  ]) {
+    await render(h(Toast, { ...props, position }));
+    assert.equal(
+      container.querySelector(".fui-toast-region").dataset.position,
+      position,
+    );
+  }
+  for (const variant of ["default", "error", "warning", "success", "info"]) {
+    await render(h(Toast, { ...props, variant }));
+    assert.equal(
+      container.querySelector(".fui-toast").dataset.variant,
+      variant,
+    );
+    assert.ok(
+      container.querySelector(
+        variant === "error" ? '[role="alert"]' : '[role="status"]',
+      ),
+    );
+  }
+  const timer = container.querySelector(".fui-toast-timer");
+  assert.equal(timer.style.animationDuration, "4000ms");
+  assert.equal(timer.getAttribute("aria-hidden"), "true");
+  await act(() => container.querySelector("button").focus());
+  assert.equal(timer.style.animationPlayState, "paused");
+  assert.equal(
+    container.querySelector(".fui-close-button svg").getAttribute("width"),
+    "24",
+  );
+  await render(h(Toast, { ...props, duration: 0 }));
+  assert.equal(container.querySelector(".fui-toast-timer"), null);
+});
+
+test("sidebar drawer opens a native dialog with side, size, and the shared close control", async () => {
+  const { SidebarDrawer } = await import("@friendly-ui/react/client");
+  await render(
+    h(
+      SidebarDrawer,
+      {
+        title: "Workspace",
+        trigger: "Open sidebar",
+        side: "right",
+        size: "lg",
+      },
+      "Navigation",
+    ),
+  );
+  await click(container.querySelector("button"));
+  const dialog = container.querySelector("dialog");
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.dataset.side, "right");
+  assert.equal(dialog.dataset.size, "lg");
+  assert.ok(dialog.classList.contains("fui-sidebar-drawer"));
+  await click(dialog.querySelector(".fui-close-button"));
+  assert.equal(dialog.open, false);
+});

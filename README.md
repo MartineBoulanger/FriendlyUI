@@ -146,3 +146,7 @@ GitHub Pages serves static assets: component HTML is produced during the build a
 The documentation is hosted separately on GitHub Pages. Package consumers can use the online documentation without running the documentation app locally. The package homepage metadata points to the hosted site.
 
 Chip is the compact label previously named Badge. Badge now wraps another element and overlays a count or status dot: `<Badge content={3}><Avatar alt="Ada Lovelace" /></Badge>`. Both remain server-compatible.
+
+Dismiss controls use the shared `CloseButton` (44px touch target, 24px themed icon). `SidebarDrawer` from `@friendly-ui/react/client` adds a dismissible native-dialog sidebar with `side`, `size`, `title`, and `trigger`; it spans the viewport at 425px and below. The original Sidebar remains an in-flow layout region.
+
+Toast accepts `duration` in milliseconds (`0` keeps it open), `showTimer` for an optional countdown bar, `variant="default|error|warning|success|info"`, and any of `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, or `bottom-right`. Countdown pauses on hover and focus. Override each variant’s `--fui-toast-<variant>-background`, `--fui-toast-<variant>-foreground`, and `--fui-toast-<variant>-border` tokens to customize its palette. Native Chromium/Safari search clear controls use `--fui-search-clear` (defaults to the muted theme color).

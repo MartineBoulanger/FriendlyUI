@@ -251,8 +251,10 @@ export const componentDocs: Doc[] = [
           screen.
         </p>
         <p>
-          This is a layout region, not an overlay. For a dismissible overlay,
-          use Modal rather than adding a focus trap to an aside. Use
+          This Sidebar is a layout region. Use SidebarDrawer from
+          @friendly-ui/react/client for an overlay with a title, trigger, side,
+          size, and a large close button. It uses native dialog focus handling
+          and takes the full viewport width at 425px and below. Use
           --fui-sidebar-width to set a custom desktop width. Supply an
           accessible name when the page has multiple complementary regions.
         </p>
@@ -273,9 +275,12 @@ export const componentDocs: Doc[] = [
     content: (
       <>
         <p>
-          Renders input type="search" with the same styles as Input. Pair it
-          with a label, or provide aria-label. A named search input submits
-          normally in a form.
+          Renders input type="search" with the same styles as Input. In Chromium
+          and Safari, the native clear control uses a themed cross instead of
+          the blue browser icon. Override --fui-search-clear to change its
+          color; browsers without this native control keep their own behavior.
+          Pair it with a label, or provide aria-label. A named search input
+          submits normally in a form.
         </p>
         <p>
           The preview uses a small client wrapper to filter local items with
@@ -476,7 +481,7 @@ export const componentDocs: Doc[] = [
     title: "Toast",
     group: "Components",
     description: "A dismissible notification with no global provider.",
-    code: `'use client';\nimport { useState } from 'react';\nimport { Button } from '@friendly-ui/react';\nimport { Toast } from '@friendly-ui/react/client';\n\nexport function SaveNotice() {\n  const [open, setOpen] = useState(false);\n  return <>\n    <Button onClick={() => setOpen(true)}>Save</Button>\n    <Toast open={open} onOpenChange={setOpen} title="Changes saved">\n      Your preferences are up to date.\n    </Toast>\n  </>;\n}`,
+    code: `'use client';\nimport { useState } from 'react';\nimport { Button } from '@friendly-ui/react';\nimport { Toast } from '@friendly-ui/react/client';\n\nexport function SaveNotice() {\n  const [open, setOpen] = useState(false);\n  return <>\n    <Button onClick={() => setOpen(true)}>Save</Button>\n    <Toast open={open} onOpenChange={setOpen} title="Changes saved"\n      variant="success" position="top-center" duration={8000} showTimer>\n      Your preferences are up to date.\n    </Toast>\n  </>;\n}`,
     preview: <ToastExample />,
     content: (
       <>
@@ -489,7 +494,16 @@ export const componentDocs: Doc[] = [
         <p>
           Dismisses after five seconds by default. The countdown pauses while
           hovered or focused and resumes with the remaining time. Set duration=0
-          to keep it until dismissed. A close button is always available.
+          to keep it until dismissed. Set showTimer to show a countdown bar,
+          which pauses with the timer. A large close button is always available.
+          Reduced-motion preferences hide the animated bar.
+        </p>
+        <p>
+          Error, warning, success, and info have default light and dark color
+          palettes. Override --fui-toast-error-background,
+          --fui-toast-error-foreground, and --fui-toast-error-border in your
+          theme file, replacing error with any other variant. For a single
+          notification, set these same variables through style or a className.
         </p>
         <p>
           This is a single notification primitive, without a global queue. Mount
@@ -503,10 +517,11 @@ export const componentDocs: Doc[] = [
       ["open / onOpenChange", "boolean / (open: boolean) => void", "required"],
       ["title", "ReactNode", "required"],
       ["duration", "milliseconds, 0 disables timeout", "5000"],
-      ["variant", "default | success | error", "default"],
+      ["showTimer", "boolean, show animated countdown", "false"],
+      ["variant", "default | success | error | warning | info", "default"],
       [
         "position",
-        "bottom-right | bottom-left | top-right | top-left",
+        "bottom-right | bottom-center | bottom-left | top-right | top-center | top-left",
         "bottom-right",
       ],
       ["closeLabel", "string", "Dismiss notification"],

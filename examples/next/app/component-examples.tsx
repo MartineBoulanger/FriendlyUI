@@ -8,8 +8,15 @@ import {
   Search,
   Sidebar,
   Heading,
+  Select,
 } from "@friendly-ui/react";
-import { Modal, Tabs, Toast } from "@friendly-ui/react/client";
+import {
+  Modal,
+  Tabs,
+  Toast,
+  SidebarDrawer,
+  type ToastProps,
+} from "@friendly-ui/react/client";
 
 export function ModalExample() {
   return (
@@ -65,20 +72,76 @@ export function TabsExample() {
 }
 export function ToastExample() {
   const [open, setOpen] = useState(false);
+  const [variant, setVariant] =
+    useState<NonNullable<ToastProps["variant"]>>("success");
+  const [position, setPosition] =
+    useState<NonNullable<ToastProps["position"]>>("bottom-right");
+  const [duration, setDuration] = useState(5000);
   return (
-    <>
+    <div className="field">
+      <Label htmlFor="toast-variant">Type</Label>
+      <Select
+        id="toast-variant"
+        value={variant}
+        onChange={(event) => setVariant(event.target.value as typeof variant)}
+      >
+        {["default", "success", "error", "warning", "info"].map((value) => (
+          <option key={value}>{value}</option>
+        ))}
+      </Select>
+      <Label htmlFor="toast-position">Position</Label>
+      <Select
+        id="toast-position"
+        value={position}
+        onChange={(event) => setPosition(event.target.value as typeof position)}
+      >
+        {[
+          "top-left",
+          "top-center",
+          "top-right",
+          "bottom-left",
+          "bottom-center",
+          "bottom-right",
+        ].map((value) => (
+          <option key={value}>{value}</option>
+        ))}
+      </Select>
+      <Label htmlFor="toast-duration">Dismiss after</Label>
+      <Select
+        id="toast-duration"
+        value={duration}
+        onChange={(event) => setDuration(Number(event.target.value))}
+      >
+        <option value={3000}>3 seconds</option>
+        <option value={5000}>5 seconds</option>
+        <option value={10000}>10 seconds</option>
+        <option value={0}>Until dismissed</option>
+      </Select>
       <Button onClick={() => setOpen(true)} disabled={open}>
         Show notification
       </Button>
       <Toast
         open={open}
         onOpenChange={setOpen}
-        title="Changes saved"
-        variant="success"
+        title={
+          {
+            default: "A quick update",
+            success: "Changes saved",
+            error: "Could not save changes",
+            warning: "Check your settings",
+            info: "A new update is available",
+          }[variant]
+        }
+        variant={variant}
+        position={position}
+        duration={duration}
+        showTimer
       >
-        Your preferences are up to date.
+        {variant === "error"
+          ? "Please try again."
+          : "Your notification uses the selected theme and position."}
       </Toast>
-    </>
+    </div>
   );
 }
 export function SearchExample() {
@@ -152,7 +215,19 @@ export function SidebarExample() {
           Size: {size}
         </Button>
       </div>
-      <div className="sidebar-demo-layout">
+      <SidebarDrawer
+        title="Workspace"
+        trigger="Open sidebar"
+        side={side}
+        size={size}
+      >
+        <nav aria-label="Drawer navigation">
+          <a href="#sidebar-overview">Overview</a>
+          <p>Projects</p>
+          <p>Settings</p>
+        </nav>
+      </SidebarDrawer>
+      <div id="sidebar-overview" className="sidebar-demo-layout">
         <Sidebar side={side} size={size} aria-label="Example sidebar">
           <Heading as="h3">Workspace</Heading>
           <p>Overview</p>

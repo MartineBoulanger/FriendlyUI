@@ -8,7 +8,7 @@ import {
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from "react";
-import { Button } from "./index.js";
+import { Button, CloseButton } from "./index.js";
 
 export type ModalProps = Omit<
   ComponentPropsWithoutRef<"dialog">,
@@ -120,18 +120,34 @@ export function Modal({
             <h2 id={`${id}-title`}>{title}</h2>
             {description && <p id={`${id}-description`}>{description}</p>}
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            aria-label={closeLabel}
-            onClick={() => change(false)}
-          >
-            ×
-          </Button>
+          <CloseButton label={closeLabel} onClick={() => change(false)} />
         </header>
         <div className="fui-modal-content">{children}</div>
       </dialog>
     </>
+  );
+}
+
+/** A dismissible sidebar using the same native dialog behavior as Modal. */
+export type SidebarDrawerProps = Omit<ModalProps, "size"> & {
+  side?: "left" | "right";
+  size?: "sm" | "md" | "lg";
+};
+export function SidebarDrawer({
+  side = "left",
+  size = "md",
+  closeLabel = "Close sidebar",
+  className,
+  ...props
+}: SidebarDrawerProps) {
+  return (
+    <Modal
+      {...props}
+      size={size}
+      closeLabel={closeLabel}
+      data-side={side}
+      className={["fui-sidebar-drawer", className].filter(Boolean).join(" ")}
+    />
   );
 }
 
@@ -262,8 +278,15 @@ export type ToastProps = Omit<
   title: ReactNode;
   children?: ReactNode;
   duration?: number;
-  variant?: "default" | "success" | "error";
-  position?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
+  variant?: "default" | "success" | "error" | "warning" | "info";
+  position?:
+    | "bottom-right"
+    | "bottom-left"
+    | "top-right"
+    | "top-left"
+    | "top-center"
+    | "bottom-center";
+  showTimer?: boolean;
   closeLabel?: string;
 };
 /** Mount once in a client wrapper; update open and content to announce messages. */
@@ -273,6 +296,7 @@ export function Toast({
   title,
   children,
   duration = 5000,
+  showTimer = false,
   variant = "default",
   position = "bottom-right",
   closeLabel = "Dismiss notification",
@@ -349,18 +373,25 @@ export function Toast({
                 <div className="fui-toast-description">{children}</div>
               )}
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              aria-label={closeLabel}
+            <CloseButton
+              label={closeLabel}
               onClick={() => {
                 setHovered(false);
                 setFocused(false);
                 onOpenChange(false);
               }}
-            >
-              ×
-            </Button>
+            />
+            {showTimer && Number.isFinite(duration) && duration > 0 && (
+              <span
+                key={duration}
+                className="fui-toast-timer"
+                aria-hidden="true"
+                style={{
+                  animationDuration: `${duration}ms`,
+                  animationPlayState: hovered || focused ? "paused" : "running",
+                }}
+              />
+            )}
           </div>
         )}
       </div>
