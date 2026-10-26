@@ -43,12 +43,12 @@
     --fui-sidebar-width: 24rem;
   }
   @media (min-width: 426px) {
-    .fui-sidebar-drawer[data-size='wide'] {
+    .fui-drawer[data-size='wide'] {
       width: 24rem;
       max-width: 100vw;
     }
   }
-  .fui-modal:not(.fui-sidebar-drawer)[data-size='wide'] {
+  .fui-modal:not(.fui-drawer)[data-size='wide'] {
     width: calc(100% - 2rem);
     max-width: 64rem;
   }

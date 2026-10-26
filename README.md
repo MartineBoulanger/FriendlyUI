@@ -150,7 +150,7 @@ Chip is the compact label previously named Badge. Badge now wraps another elemen
 Dismiss controls use the shared `CloseButton` (44px touch target, 24px themed icon).
 
 - `Sidebar` from `@fwenthehunter/friendly-ui` renders a persistent, server-compatible `<aside>` beside your content. It occupies space in the page layout and has no trigger, overlay, or open/close behavior. Its `side` prop sets its position in a flex container; at 425px and below it fills its parent width.
-- `SidebarDrawer` from `@fwenthehunter/friendly-ui/client` opens a dismissible native-dialog panel over the page. Use its `trigger` to open it and its close button, Escape, or backdrop to dismiss it. It supports `side`, `size`, and the Modal props, manages keyboard focus, and fills the viewport width at 425px and below. It has no built-in sliding animation.
+- `Drawer` from `@fwenthehunter/friendly-ui/client` opens a dismissible native-dialog panel over the page. Use its `trigger` to open it and its close button, Escape, or backdrop to dismiss it. It supports `side`, `size`, and the Modal props, manages keyboard focus, and fills the viewport width at 425px and below. It has no built-in sliding animation.
 
 Each component has its own documentation page and example.
 
@@ -162,7 +162,7 @@ Button and Toast accept custom string variants with built-in TypeScript suggesti
 
 ## Custom sizes
 
-All existing size props accept application-defined strings while keeping built-in TypeScript suggestions: Button, CloseButton, Avatar, Sidebar, Modal, and SidebarDrawer. Add a rule in your theme file (loaded after the package CSS), then pass that same name. No registration is needed. Unknown names use base styles until you supply CSS.
+All existing size props accept application-defined strings while keeping built-in TypeScript suggestions: Button, CloseButton, Avatar, Sidebar, Modal, and Drawer. Add a rule in your theme file (loaded after the package CSS), then pass that same name. No registration is needed. Unknown names use base styles until you supply CSS.
 
 ```css
 @layer components {
@@ -201,3 +201,7 @@ bun add /path/to/fwenthehunter-friendly-ui-0.1.0.tgz
 ```
 
 Choose one command, replace the path, and keep using your app’s existing lockfile. The tarball includes built JavaScript, CSS, and TypeScript declarations and needs no installation-time build.
+
+## Migrating to 0.2.0
+
+`SidebarDrawer` is now `Drawer`, and `SidebarDrawerProps` is now `DrawerProps`. Import `Drawer` from `@fwenthehunter/friendly-ui/client`. Update custom CSS selectors from `.fui-sidebar-drawer` to `.fui-drawer`. The behavior is unchanged.

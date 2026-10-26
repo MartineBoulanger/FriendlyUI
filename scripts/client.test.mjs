@@ -326,11 +326,11 @@ test("toast supports six positions, four semantic types, and an optional paused 
   assert.equal(container.querySelector(".fui-toast-timer"), null);
 });
 
-test("sidebar drawer opens a native dialog with side, size, and the shared close control", async () => {
-  const { SidebarDrawer } = await import("@fwenthehunter/friendly-ui/client");
+test("drawer opens a native dialog with side, size, and the shared close control", async () => {
+  const { Drawer } = await import("@fwenthehunter/friendly-ui/client");
   await render(
     h(
-      SidebarDrawer,
+      Drawer,
       {
         title: "Workspace",
         trigger: "Open sidebar",
@@ -345,7 +345,7 @@ test("sidebar drawer opens a native dialog with side, size, and the shared close
   assert.equal(dialog.open, true);
   assert.equal(dialog.dataset.side, "right");
   assert.equal(dialog.dataset.size, "lg");
-  assert.ok(dialog.classList.contains("fui-sidebar-drawer"));
+  assert.ok(dialog.classList.contains("fui-drawer"));
   await click(dialog.querySelector(".fui-close-button"));
   assert.equal(dialog.open, false);
 });
@@ -358,11 +358,11 @@ test('custom button and toast variants reach their CSS selectors without changin
   assert.ok(container.querySelector('[role="status"]'));
 });
 
-test('modal and sidebar drawer forward custom sizes to their dialogs', async () => {
-  const { SidebarDrawer } = await import('@fwenthehunter/friendly-ui/client');
+test('modal and drawer forward custom sizes to their dialogs', async () => {
+  const { Drawer } = await import('@fwenthehunter/friendly-ui/client');
   await render(h(Modal,{title:'Wide modal',size:'wide',open:true}));
   assert.equal(container.querySelector('dialog').dataset.size,'wide');
-  await render(h(SidebarDrawer,{title:'Wide sidebar',size:'wide',open:true}));
+  await render(h(Drawer,{title:'Wide sidebar',size:'wide',open:true}));
   assert.equal(container.querySelector('dialog').dataset.size,'wide');
-  assert.ok(container.querySelector('.fui-sidebar-drawer'));
+  assert.ok(container.querySelector('.fui-drawer'));
 });

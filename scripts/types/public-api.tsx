@@ -26,7 +26,7 @@ const invalidToastVariant: ToastVariant = { name: "brand" };
 import { Avatar, Sidebar, type Size } from "@fwenthehunter/friendly-ui";
 import {
   Modal,
-  SidebarDrawer,
+  Drawer,
   type ModalSize,
 } from "@fwenthehunter/friendly-ui/client";
 const extraSize: Size = "xl";
@@ -36,7 +36,7 @@ const extraModalSize: ModalSize = "wide";
 <Avatar alt="Ada Lovelace" size="xl" />;
 <Sidebar size="wide" />;
 <Modal title="Details" size={extraModalSize} />;
-<SidebarDrawer title="Navigation" size="wide" />;
+<Drawer title="Navigation" size="wide" />;
 // @ts-expect-error Size names must be strings.
 <Avatar alt="Ada" size={42} />;
 // @ts-expect-error Modal size names must be strings.

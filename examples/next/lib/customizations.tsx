@@ -1,5 +1,5 @@
 import { Avatar, Button, CloseButton, Sidebar } from '@fwenthehunter/friendly-ui';
-import { Modal, SidebarDrawer } from '@fwenthehunter/friendly-ui/client';
+import { Modal, Drawer } from '@fwenthehunter/friendly-ui/client';
 import { BrandToastExample } from '../app/component-examples';
 import type { ReactNode } from 'react';
 
@@ -75,32 +75,32 @@ export const customizations: Record<string, Example[]> = {
       ),
     },
   ],
-  'sidebar-drawer': [
+  'drawer': [
     {
       title: 'Add a size',
-      css: '@media (min-width: 426px) {\n  .fui-sidebar-drawer[data-size="wide"] {\n    width: 24rem;\n    max-width: 100vw;\n  }\n}',
+      css: '@media (min-width: 426px) {\n  .fui-drawer[data-size="wide"] {\n    width: 24rem;\n    max-width: 100vw;\n  }\n}',
       usage:
-        'import { SidebarDrawer } from "@fwenthehunter/friendly-ui/client";\n\n<SidebarDrawer size="wide" side="right" title="Workspace" trigger="Open wide sidebar">\n  Workspace navigation\n</SidebarDrawer>',
+        'import { Drawer } from "@fwenthehunter/friendly-ui/client";\n\n<Drawer size="wide" side="right" title="Workspace" trigger="Open wide sidebar">\n  Workspace navigation\n</Drawer>',
       note: 'The media query keeps the full-screen mobile width. This is a client component, but it can be rendered from a Server Component with a built-in trigger.',
       preview: (
-        <SidebarDrawer
+        <Drawer
           size='wide'
           side='right'
           title='Workspace'
           trigger='Open wide sidebar'
         >
           Workspace navigation
-        </SidebarDrawer>
+        </Drawer>
       ),
     },
   ],
   modal: [
     {
       title: 'Add a size',
-      css: '.fui-modal:not(.fui-sidebar-drawer)[data-size="wide"] {\n  width: calc(100% - 2rem);\n  max-width: 64rem;\n}',
+      css: '.fui-modal:not(.fui-drawer)[data-size="wide"] {\n  width: calc(100% - 2rem);\n  max-width: 64rem;\n}',
       usage:
         'import { Modal } from "@fwenthehunter/friendly-ui/client";\n\n<Modal size="wide" title="Project details" trigger="Open wide modal">\n  Your content\n</Modal>',
-      note: 'Keep a viewport margin so the dialog fits smaller screens. The selector excludes SidebarDrawer so its custom size stays independent. Native focus handling and dismissal are unchanged.',
+      note: 'Keep a viewport margin so the dialog fits smaller screens. The selector excludes Drawer so its custom size stays independent. Native focus handling and dismissal are unchanged.',
       preview: (
         <Modal size='wide' title='Project details' trigger='Open wide modal'>
           Your content

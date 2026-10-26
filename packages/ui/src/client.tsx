@@ -134,24 +134,24 @@ export function Modal({
 }
 
 /** A dismissible sidebar using the same native dialog behavior as Modal. */
-export type SidebarDrawerProps = Omit<ModalProps, "size"> & {
+export type DrawerProps = Omit<ModalProps, "size"> & {
   side?: "left" | "right";
   size?: Size;
 };
-export function SidebarDrawer({
+export function Drawer({
   side = "left",
   size = "md",
-  closeLabel = "Close sidebar",
+  closeLabel = "Close drawer",
   className,
   ...props
-}: SidebarDrawerProps) {
+}: DrawerProps) {
   return (
     <Modal
       {...props}
       size={size}
       closeLabel={closeLabel}
       data-side={side}
-      className={["fui-sidebar-drawer", className].filter(Boolean).join(" ")}
+      className={["fui-drawer", className].filter(Boolean).join(" ")}
     />
   );
 }
