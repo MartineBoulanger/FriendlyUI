@@ -43,13 +43,13 @@ textarea {
 .brand-icon {
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
+  width: 40px;
+  height: 30px;
   background: var(--fui-foreground);
   color: var(--fui-background);
   border-radius: 8px;
   font:
-    italic bold 25px Georgia,
+    italic bold 22px Georgia,
     serif;
 }
 .version {
