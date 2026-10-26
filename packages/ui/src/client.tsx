@@ -9,9 +9,11 @@ import {
   type ReactNode,
 } from "react";
 import { Button, CloseButton } from "./index.js";
-import type { ExtensibleVariant } from "./types.js";
+import type { ExtensibleVariant, ExtensibleString, Size } from "./types.js";
 
 export type ToastVariant = ExtensibleVariant<"default" | "success" | "error" | "warning" | "info">;
+
+export type ModalSize = ExtensibleString<"sm" | "md" | "lg" | "full">;
 
 export type ModalProps = Omit<
   ComponentPropsWithoutRef<"dialog">,
@@ -23,7 +25,7 @@ export type ModalProps = Omit<
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  size?: "sm" | "md" | "lg" | "full";
+  size?: ModalSize;
   closeOnEscape?: boolean;
   closeOnOverlay?: boolean;
   closeLabel?: string;
@@ -134,7 +136,7 @@ export function Modal({
 /** A dismissible sidebar using the same native dialog behavior as Modal. */
 export type SidebarDrawerProps = Omit<ModalProps, "size"> & {
   side?: "left" | "right";
-  size?: "sm" | "md" | "lg";
+  size?: Size;
 };
 export function SidebarDrawer({
   side = "left",

@@ -357,3 +357,12 @@ test('custom button and toast variants reach their CSS selectors without changin
   assert.equal(container.querySelector('.fui-toast').dataset.variant,'brand');
   assert.ok(container.querySelector('[role="status"]'));
 });
+
+test('modal and sidebar drawer forward custom sizes to their dialogs', async () => {
+  const { SidebarDrawer } = await import('@friendly-ui/react/client');
+  await render(h(Modal,{title:'Wide modal',size:'wide',open:true}));
+  assert.equal(container.querySelector('dialog').dataset.size,'wide');
+  await render(h(SidebarDrawer,{title:'Wide sidebar',size:'wide',open:true}));
+  assert.equal(container.querySelector('dialog').dataset.size,'wide');
+  assert.ok(container.querySelector('.fui-sidebar-drawer'));
+});

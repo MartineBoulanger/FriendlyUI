@@ -1,3 +1,4 @@
+import type { Size } from "./types.js";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
 function cx(...values: (string | undefined)[]) {
@@ -72,7 +73,7 @@ export const Divider = Separator;
 
 export type SidebarProps = ComponentPropsWithRef<"aside"> & {
   side?: "left" | "right";
-  size?: "sm" | "md" | "lg";
+  size?: Size;
 };
 /** An in-flow layout region. Use Modal for an overlaid, dismissible mobile drawer. */
 export function Sidebar({
@@ -107,7 +108,7 @@ export type AvatarProps = Omit<ComponentPropsWithRef<"span">, "children"> & {
   src?: string;
   alt: string;
   fallback?: ReactNode;
-  size?: "sm" | "md" | "lg";
+  size?: Size;
   imageProps?: Omit<ComponentPropsWithRef<"img">, "src" | "alt" | "children">;
 };
 export function Avatar({

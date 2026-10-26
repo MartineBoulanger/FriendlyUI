@@ -1,5 +1,6 @@
 import {
   Avatar,
+  CloseButton,
   Checkbox,
   Heading,
   Label,
@@ -27,6 +28,8 @@ import {
 import type { Doc } from "./docs";
 
 export const componentDocs: Doc[] = [
+  {slug:"close-button",title:"CloseButton",group:"Components",description:"An accessible dismiss control with a generous touch target.",code:'import { CloseButton } from "@friendly-ui/react";\n\n<CloseButton label="Close settings" />',preview:<CloseButton label="Close settings" />,content:<p>A server-compatible Button with a themed cross icon and a 44px default touch target. Set label for its accessible name. Define onClick in a client wrapper when adding dismissal behavior. Modal, Toast, and SidebarDrawer use this control internally.</p>,props:[["label","string","Close"],["variant","primary | secondary | ghost | custom string","ghost"],["size","sm | md | lg | custom string","md"]]},
+  {slug:"sidebar-drawer",title:"SidebarDrawer",group:"Components",description:"An overlaid sidebar with native dialog focus and dismissal.",code:'import { SidebarDrawer } from "@friendly-ui/react/client";\n\n<SidebarDrawer title="Workspace" trigger="Open sidebar" side="right" size="md">\n  Workspace navigation\n</SidebarDrawer>',content:<p>Import from the client entry point. Supports the Modal props for title, trigger, open/defaultOpen, onOpenChange, description, and dismissal settings. Choose left or right and a desktop width; at 425px and below it spans the full viewport. Use Sidebar for an in-flow layout instead.</p>,props:[["side","left | right","left"],["size","sm | md | lg | custom string","md"],["closeLabel","string","Close sidebar"]]},
   {
     slug: "checkbox",
     title: "Checkbox",
@@ -262,7 +265,7 @@ export const componentDocs: Doc[] = [
     ),
     props: [
       ["side", "left | right", "left"],
-      ["size", "sm | md | lg", "md"],
+      ["size", "sm | md | lg | custom string", "md"],
     ],
   },
   {
@@ -325,7 +328,7 @@ export const componentDocs: Doc[] = [
       ["description", "ReactNode", "—"],
       ["open / defaultOpen", "boolean", "false"],
       ["onOpenChange", "(open: boolean) => void", "—"],
-      ["size", "sm | md | lg | full", "md"],
+      ["size", "sm | md | lg | full | custom string", "md"],
       ["closeOnEscape / closeOnOverlay", "boolean", "true"],
       ["closeLabel", "string", "Close dialog"],
     ],
@@ -393,7 +396,7 @@ export const componentDocs: Doc[] = [
       ["alt", "string (required)", "—"],
       ["src", "string", "—"],
       ["fallback", "ReactNode", "initials from alt"],
-      ["size", "sm | md | lg", "md"],
+      ["size", "sm | md | lg | custom string", "md"],
       ["imageProps", "native img props except src/alt", "—"],
     ],
   },

@@ -241,3 +241,9 @@ export function SidebarExample() {
     </div>
   );
 }
+
+
+export function BrandToastExample() {
+  const [open, setOpen] = useState(false);
+  return <><Button onClick={() => setOpen(true)} disabled={open}>Show brand toast</Button><Toast variant="brand" open={open} onOpenChange={setOpen} title="Welcome">Your brand colors, with the same toast behavior.</Toast></>;
+}

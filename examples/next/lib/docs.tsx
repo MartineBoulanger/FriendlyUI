@@ -10,6 +10,7 @@ import {
   Label,
   Textarea,
 } from "@friendly-ui/react";
+import { InstallGuide } from "./install-guide";
 import { componentDocs } from "./component-docs";
 import { Counter } from "../app/counter";
 
@@ -37,6 +38,7 @@ export const docs: Doc[] = [
           Use the workspace example or install its tarball in another Next.js
           App Router app. React 19 is required.
         </p>
+        <InstallGuide />
         <h2>Load the styles once</h2>
         <p>
           In your global CSS, import Tailwind, the component styles, the
@@ -206,7 +208,7 @@ export const docs: Doc[] = [
     ),
     props: [
       ["variant", "primary | secondary | ghost | custom string", "primary"],
-      ["size", "sm | md | lg", "md"],
+      ["size", "sm | md | lg | custom string", "md"],
       ["type", "button | submit | reset", "button"],
     ],
   },

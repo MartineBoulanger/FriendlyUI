@@ -154,3 +154,45 @@ Toast accepts `duration` in milliseconds (`0` keeps it open), `showTimer` for an
 Pagination accepts `nextLabel` and `previousLabel` as ReactNode values (text, icons, or fragments), including at disabled edges. Defaults remain “Next” and “Previous”. Give icon-only labels an accessible name.
 
 Button and Toast accept custom string variants with built-in TypeScript suggestions preserved. CloseButton inherits Button’s variant type. No registration is needed: use `<Button variant="danger">Delete</Button>` and define `.fui-button[data-variant="danger"]` in your theme CSS. Custom Toast selectors use `.fui-toast[data-variant="brand"]`; set `--fui-toast-background`, `--fui-toast-foreground`, and `--fui-toast-border` there. Unknown variants inherit base styling until your CSS supplies the variant’s appearance. `ButtonVariant` and `ExtensibleVariant` are exported from the default entry, and `ToastVariant` from the client entry.
+
+## Custom sizes
+
+All existing size props accept application-defined strings while keeping built-in TypeScript suggestions: Button, CloseButton, Avatar, Sidebar, Modal, and SidebarDrawer. Add a rule in your theme file (loaded after the package CSS), then pass that same name. No registration is needed. Unknown names use base styles until you supply CSS.
+
+```css
+@layer components {
+  .fui-button[data-size="xl"] {
+    min-height: 3.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+```
+
+```tsx
+<Button size="xl" variant="danger">Delete</Button>
+```
+
+The online reference for each relevant component includes its own complete CSS and usage examples. Sidebar examples preserve the full-width mobile behavior. CloseButton examples keep a generous touch target. `Size` is exported from the default entry; `ModalSize` is exported from the client entry. Components without a size or variant prop still accept className and style.
+
+## Choose your package manager
+
+The published package will work with npm, pnpm, Yarn, and Bun. There is one standard package artifact; it does not require consumers to use this repository’s npm workspace setup. React 19 and React DOM 19 are peer dependencies. The package is not published yet, so these registry commands are for after release:
+
+```sh
+npm install @friendly-ui/react
+pnpm add @friendly-ui/react
+yarn add @friendly-ui/react
+bun add @friendly-ui/react
+```
+
+For now, build and pack with `npm run build -w @friendly-ui/react` followed by `npm pack -w @friendly-ui/react`. In your app, install the resulting tarball with your preferred manager:
+
+```sh
+npm install /path/to/friendly-ui-react-0.1.0.tgz
+pnpm add /path/to/friendly-ui-react-0.1.0.tgz
+yarn add file:/path/to/friendly-ui-react-0.1.0.tgz
+bun add /path/to/friendly-ui-react-0.1.0.tgz
+```
+
+Choose one command, replace the path, and keep using your app’s existing lockfile. The tarball includes built JavaScript, CSS, and TypeScript declarations and needs no installation-time build.

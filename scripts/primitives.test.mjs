@@ -166,3 +166,10 @@ test('pagination custom labels render on enabled links and disabled edges', () =
   assert.match(render(h(Pagination,{...props,page:3})),/aria-disabled="true"><span>Next →<\/span>/);
   window.close();
 });
+
+test('custom server-component sizes are emitted as styling hooks', async () => {
+  const { Button, CloseButton } = await import('@friendly-ui/react');
+  for (const [Component, props] of [[Button,{}],[CloseButton,{}],[Avatar,{alt:'Ada'}],[Sidebar,{}]]) {
+    assert.match(render(h(Component,{...props,size:'custom-size'})),/data-size="custom-size"/);
+  }
+});

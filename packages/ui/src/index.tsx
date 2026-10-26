@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
-import type { ExtensibleVariant } from "./types.js";
-export type { ExtensibleVariant } from "./types.js";
+import type { ExtensibleVariant, Size } from "./types.js";
+export type { ExtensibleVariant, ExtensibleString, Size } from "./types.js";
 
 export type ButtonVariant = ExtensibleVariant<"primary" | "secondary" | "ghost">;
 
@@ -10,7 +10,7 @@ function cx(...values: (string | undefined)[]) {
 
 type ButtonProps = ComponentPropsWithRef<"button"> & {
   variant?: ButtonVariant;
-  size?: "sm" | "md" | "lg";
+  size?: Size;
 };
 export function Button({
   variant = "primary",

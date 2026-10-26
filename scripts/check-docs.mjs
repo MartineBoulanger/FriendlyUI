@@ -11,7 +11,7 @@ function walk(dir) {
   });
 }
 const pages = walk(root).filter(file => file.endsWith('.html'));
-for (const slug of ['installation', 'theming', 'server-and-client', 'button', 'card', 'input', 'textarea', 'label', 'badge', 'chip', 'accordion', 'checkbox', 'radio', 'select', 'heading', 'switch', 'separator', 'sidebar', 'search', 'modal', 'tabs', 'avatar', 'pagination', 'table', 'toast']) {
+for (const slug of ['installation', 'theming', 'server-and-client', 'button', 'card', 'input', 'textarea', 'label', 'badge', 'chip', 'close-button', 'sidebar-drawer', 'accordion', 'checkbox', 'radio', 'select', 'heading', 'switch', 'separator', 'sidebar', 'search', 'modal', 'tabs', 'avatar', 'pagination', 'table', 'toast']) {
   assert.ok(existsSync(join(root, 'docs', slug, 'index.html')), `Missing documentation page: ${slug}`);
 }
 let checked = 0;
@@ -30,3 +30,11 @@ for (const file of pages) {
 assert.match(readFileSync(join(root, 'docs/accordion/index.html'), 'utf8'), /<details/);
 assert.match(readFileSync(join(root, 'docs/server-and-client/index.html'), 'utf8'), /Clicked/);
 console.log(`Checked ${pages.length} static pages and ${checked} local links/assets (base path: ${base || '/'}).`);
+
+for (const slug of ['button', 'close-button', 'avatar', 'sidebar', 'sidebar-drawer', 'modal', 'toast']) {
+  const html = readFileSync(join(root, 'docs', slug, 'index.html'), 'utf8');
+  assert.match(html, /Customize this component/, `Missing customisation guide for ${slug}`);
+  assert.match(html, /app\/theme.css/, `Missing theme-file instructions for ${slug}`);
+}
+const installPage = readFileSync(join(root, 'docs/installation/index.html'), 'utf8');
+for (const manager of ['npm install', 'pnpm add', 'yarn add', 'bun add']) assert.ok(installPage.includes(manager), `Missing ${manager} instructions`);
