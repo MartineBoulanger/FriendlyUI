@@ -73,7 +73,7 @@ export function TabsExample() {
 export function ToastExample() {
   const [open, setOpen] = useState(false);
   const [variant, setVariant] =
-    useState<NonNullable<ToastProps["variant"]>>("success");
+    useState<"default" | "success" | "error" | "warning" | "info">("success");
   const [position, setPosition] =
     useState<NonNullable<ToastProps["position"]>>("bottom-right");
   const [duration, setDuration] = useState(5000);
@@ -173,6 +173,8 @@ export function PaginationExample() {
       <Pagination
         page={page}
         totalPages={10}
+        previousLabel="← Previous"
+        nextLabel="Next →"
         href={(n) => `?page=${n}`}
         onClick={(event) => {
           const link = (event.target as Element).closest("a");

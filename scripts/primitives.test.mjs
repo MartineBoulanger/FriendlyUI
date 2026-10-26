@@ -156,3 +156,13 @@ test("client components retain their boundary without contaminating the default 
       /['"]use client['"]|from ['"]\.\/client/,
     );
 });
+
+test('pagination custom labels render on enabled links and disabled edges', () => {
+  const props = {page:2,totalPages:3,href:n=>`?page=${n}`,previousLabel:'Vorige',nextLabel:h('span',{},'Next →')};
+  const {window}=new JSDOM(render(h(Pagination,props)));
+  assert.equal(window.document.querySelector('[rel="prev"]').textContent,'Vorige');
+  assert.equal(window.document.querySelector('[rel="next"]').innerHTML,'<span>Next →</span>');
+  assert.match(render(h(Pagination,{...props,page:1})),/aria-disabled="true">Vorige/);
+  assert.match(render(h(Pagination,{...props,page:3})),/aria-disabled="true"><span>Next →<\/span>/);
+  window.close();
+});

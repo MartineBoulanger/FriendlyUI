@@ -349,3 +349,11 @@ test("sidebar drawer opens a native dialog with side, size, and the shared close
   await click(dialog.querySelector(".fui-close-button"));
   assert.equal(dialog.open, false);
 });
+
+test('custom button and toast variants reach their CSS selectors without changing semantics', async () => {
+  const { Button } = await import('@friendly-ui/react');
+  await render(h('div',{},h(Button,{variant:'danger'},'Delete'),h(Toast,{variant:'brand',open:true,duration:0,onOpenChange:()=>{},title:'Welcome'})));
+  assert.equal(container.querySelector('button').dataset.variant,'danger');
+  assert.equal(container.querySelector('.fui-toast').dataset.variant,'brand');
+  assert.ok(container.querySelector('[role="status"]'));
+});

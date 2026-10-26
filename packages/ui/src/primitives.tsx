@@ -151,6 +151,8 @@ export type PaginationProps = Omit<ComponentPropsWithRef<"nav">, "children"> & {
   totalPages: number;
   href: (page: number) => string;
   siblingCount?: number;
+  nextLabel?: ReactNode;
+  previousLabel?: ReactNode;
 };
 /** Work is bounded even for very large page counts. */
 export function Pagination({
@@ -158,6 +160,8 @@ export function Pagination({
   totalPages,
   href,
   siblingCount = 1,
+  nextLabel = "Next",
+  previousLabel = "Previous",
   className,
   ...props
 }: PaginationProps) {
@@ -195,10 +199,10 @@ export function Pagination({
         <li>
           {page > 1 ? (
             <a href={href(page - 1)} rel="prev">
-              Previous
+              {previousLabel}
             </a>
           ) : (
-            <span aria-disabled="true">Previous</span>
+            <span aria-disabled="true">{previousLabel}</span>
           )}
         </li>
         {pages.map((n, i) => (
@@ -220,10 +224,10 @@ export function Pagination({
         <li>
           {page < totalPages ? (
             <a href={href(page + 1)} rel="next">
-              Next
+              {nextLabel}
             </a>
           ) : (
-            <span aria-disabled="true">Next</span>
+            <span aria-disabled="true">{nextLabel}</span>
           )}
         </li>
       </ul>

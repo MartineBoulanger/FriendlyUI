@@ -89,6 +89,23 @@ export const docs: Doc[] = [
           surface, muted, subtle, border, primary, primary-foreground, ring,
           radius, font, heading-1 through heading-6, danger, and success.
         </p>
+        <h2>Add your own variants</h2>
+        <p>Button and Toast accept custom variant names while keeping built-in TypeScript suggestions. CloseButton inherits Button’s variants. No registration or client provider is required: add a selector to your theme file, then use the name.</p>
+        <pre><code>{`/* app/theme.css */
+@layer components {
+  .fui-button[data-variant="danger"] {
+    background: var(--fui-danger);
+    color: #fff;
+  }
+  .fui-toast[data-variant="brand"] {
+    --fui-toast-background: #312e81;
+    --fui-toast-foreground: #fff;
+    --fui-toast-border: #6366f1;
+  }
+}`}</code></pre>
+        <pre><code>{`<Button variant="danger">Delete</Button>
+<Toast variant="brand" open={open} onOpenChange={setOpen} title="Welcome" />`}</code></pre>
+        <p>Custom variants inherit base styles until you supply their CSS. Define suitable foreground/background pairs for each color scheme. Custom toast variants use polite status announcements; the built-in error variant uses an alert.</p>
         <h2>Dark mode and scoped themes</h2>
         <p>
           The defaults follow the system color scheme. Set{" "}
@@ -167,6 +184,7 @@ export const docs: Doc[] = [
       <div className="preview-row">
         <Button>Continue</Button>
         <Button variant="secondary">Cancel</Button>
+        <Button variant="danger">Delete (custom)</Button>
         <Button variant="ghost" size="sm">
           Learn more
         </Button>
@@ -176,7 +194,7 @@ export const docs: Doc[] = [
     content: (
       <>
         <p>
-          Defaults to type="button" to avoid accidental form submissions. Set
+          Custom variant names such as danger are supported; their styles come from your theme file. The danger preview uses CSS supplied by this documentation app. Defaults to type="button" to avoid accidental form submissions. Set
           type="submit" explicitly inside a form. Use a client wrapper for
           onClick behavior.
         </p>
@@ -187,7 +205,7 @@ export const docs: Doc[] = [
       </>
     ),
     props: [
-      ["variant", "primary | secondary | ghost", "primary"],
+      ["variant", "primary | secondary | ghost | custom string", "primary"],
       ["size", "sm | md | lg", "md"],
       ["type", "button | submit | reset", "button"],
     ],

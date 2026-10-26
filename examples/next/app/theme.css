@@ -4,3 +4,11 @@
   /* --fui-primary: #2563eb;
      --fui-primary-foreground: #ffffff; */
 }
+
+/* An application-defined variant; not a package built-in. */
+@layer components {
+  .fui-button[data-variant="danger"] {
+    background: var(--fui-danger);
+    color: #fff;
+  }
+}

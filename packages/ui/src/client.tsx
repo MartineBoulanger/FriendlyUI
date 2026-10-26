@@ -9,6 +9,9 @@ import {
   type ReactNode,
 } from "react";
 import { Button, CloseButton } from "./index.js";
+import type { ExtensibleVariant } from "./types.js";
+
+export type ToastVariant = ExtensibleVariant<"default" | "success" | "error" | "warning" | "info">;
 
 export type ModalProps = Omit<
   ComponentPropsWithoutRef<"dialog">,
@@ -278,7 +281,7 @@ export type ToastProps = Omit<
   title: ReactNode;
   children?: ReactNode;
   duration?: number;
-  variant?: "default" | "success" | "error" | "warning" | "info";
+  variant?: ToastVariant;
   position?:
     | "bottom-right"
     | "bottom-left"

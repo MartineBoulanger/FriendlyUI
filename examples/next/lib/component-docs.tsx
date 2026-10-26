@@ -402,14 +402,14 @@ export const componentDocs: Doc[] = [
     title: "Pagination",
     group: "Components",
     description: "Real links that work on the server and in the browser.",
-    code: `import { Pagination } from '@friendly-ui/react';\n\n<Pagination page={3} totalPages={20}\n  href={page => '/articles?page=' + page} />`,
+    code: `import { Pagination } from '@friendly-ui/react';\n\n<Pagination page={3} totalPages={20}\n  href={page => '/articles?page=' + page}\n  previousLabel="← Previous" nextLabel="Next →" />`,
     preview: <PaginationExample />,
     content: (
       <>
         <p>
           Pass the current page, total pages, and a URL builder. Previous and
           Next become disabled text at the edges. The current link uses
-          aria-current="page"; distant ranges collapse into ellipses.
+          aria-current="page"; distant ranges collapse into ellipses. Customize nextLabel and previousLabel with text or React elements. For an icon-only label, include accessible text or an accessible SVG name. These labels also appear at disabled edges.
         </p>
         <p>
           Page numbers must be integers with totalPages at least 1 and page
@@ -429,6 +429,8 @@ export const componentDocs: Doc[] = [
       ["page / totalPages", "positive integers", "required"],
       ["href", "(page: number) => string", "required"],
       ["siblingCount", "number, bounded to 0–5", "1"],
+      ["nextLabel", "ReactNode", "Next"],
+      ["previousLabel", "ReactNode", "Previous"],
     ],
   },
   {
@@ -518,7 +520,7 @@ export const componentDocs: Doc[] = [
       ["title", "ReactNode", "required"],
       ["duration", "milliseconds, 0 disables timeout", "5000"],
       ["showTimer", "boolean, show animated countdown", "false"],
-      ["variant", "default | success | error | warning | info", "default"],
+      ["variant", "default | success | error | warning | info | custom string", "default"],
       [
         "position",
         "bottom-right | bottom-center | bottom-left | top-right | top-center | top-left",
