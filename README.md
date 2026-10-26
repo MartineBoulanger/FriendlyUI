@@ -147,7 +147,12 @@ The documentation is hosted separately on GitHub Pages. Package consumers can us
 
 Chip is the compact label previously named Badge. Badge now wraps another element and overlays a count or status dot: `<Badge content={3}><Avatar alt="Ada Lovelace" /></Badge>`. Both remain server-compatible.
 
-Dismiss controls use the shared `CloseButton` (44px touch target, 24px themed icon). `SidebarDrawer` from `@fwenthehunter/friendly-ui/client` adds a dismissible native-dialog sidebar with `side`, `size`, `title`, and `trigger`; it spans the viewport at 425px and below. The original Sidebar remains an in-flow layout region.
+Dismiss controls use the shared `CloseButton` (44px touch target, 24px themed icon).
+
+- `Sidebar` from `@fwenthehunter/friendly-ui` renders a persistent, server-compatible `<aside>` beside your content. It occupies space in the page layout and has no trigger, overlay, or open/close behavior. Its `side` prop sets its position in a flex container; at 425px and below it fills its parent width.
+- `SidebarDrawer` from `@fwenthehunter/friendly-ui/client` opens a dismissible native-dialog panel over the page. Use its `trigger` to open it and its close button, Escape, or backdrop to dismiss it. It supports `side`, `size`, and the Modal props, manages keyboard focus, and fills the viewport width at 425px and below. It has no built-in sliding animation.
+
+Each component has its own documentation page and example.
 
 Toast accepts `duration` in milliseconds (`0` keeps it open), `showTimer` for an optional countdown bar, `variant="default|error|warning|success|info"`, and any of `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, or `bottom-right`. Countdown pauses on hover and focus. Override each variant’s `--fui-toast-<variant>-background`, `--fui-toast-<variant>-foreground`, and `--fui-toast-<variant>-border` tokens to customize its palette. Native Chromium/Safari search clear controls use `--fui-search-clear` (defaults to the muted theme color).
 

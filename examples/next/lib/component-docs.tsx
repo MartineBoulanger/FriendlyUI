@@ -22,6 +22,7 @@ import {
   PaginationExample,
   SearchExample,
   SidebarExample,
+  SidebarDrawerExample,
   TabsExample,
   ToastExample,
 } from "../app/component-examples";
@@ -29,7 +30,23 @@ import type { Doc } from "./docs";
 
 export const componentDocs: Doc[] = [
   {slug:"close-button",title:"CloseButton",group:"Components",description:"An accessible dismiss control with a generous touch target.",code:'import { CloseButton } from "@fwenthehunter/friendly-ui";\n\n<CloseButton label="Close settings" />',preview:<CloseButton label="Close settings" />,content:<p>A server-compatible Button with a themed cross icon and a 44px default touch target. Set label for its accessible name. Define onClick in a client wrapper when adding dismissal behavior. Modal, Toast, and SidebarDrawer use this control internally.</p>,props:[["label","string","Close"],["variant","primary | secondary | ghost | custom string","ghost"],["size","sm | md | lg | custom string","md"]]},
-  {slug:"sidebar-drawer",title:"SidebarDrawer",group:"Components",description:"An overlaid sidebar with native dialog focus and dismissal.",code:'import { SidebarDrawer } from "@fwenthehunter/friendly-ui/client";\n\n<SidebarDrawer title="Workspace" trigger="Open sidebar" side="right" size="md">\n  Workspace navigation\n</SidebarDrawer>',content:<p>Import from the client entry point. Supports the Modal props for title, trigger, open/defaultOpen, onOpenChange, description, and dismissal settings. Choose left or right and a desktop width; at 425px and below it spans the full viewport. Use Sidebar for an in-flow layout instead.</p>,props:[["side","left | right","left"],["size","sm | md | lg | custom string","md"],["closeLabel","string","Close sidebar"]]},
+  {
+    slug: "sidebar-drawer",
+    title: "SidebarDrawer",
+    group: "Components",
+    description: "A dismissible panel that opens over the page content.",
+    code: 'import { SidebarDrawer } from "@fwenthehunter/friendly-ui/client";\n\n<SidebarDrawer title="Workspace navigation" trigger="Open navigation" side="left" size="md">\n  <nav aria-label="Workspace navigation">...</nav>\n</SidebarDrawer>',
+    preview: <SidebarDrawerExample />,
+    content: (
+      <>
+        <p>Use SidebarDrawer for navigation or settings that users open when needed. Its trigger opens a native dialog over the page without moving the page layout. Choose the left or right edge with side. It fills the viewport height and, at 425px and below, the full viewport width.</p>
+        <p>The drawer manages keyboard focus. Close it with its close button, Escape, or a click on the backdrop. Escape and backdrop dismissal can be configured with closeOnEscape and closeOnOverlay. It has no built-in sliding animation.</p>
+        <p>Import it from the client entry point. A Server Component can render it with the built-in trigger; controlled open state and event callbacks belong in a client wrapper. Use <a href="../sidebar/">Sidebar</a> for a persistent panel beside your content.</p>
+        <p>SidebarDrawer also accepts the Modal props, including title, description, trigger, open, defaultOpen, and onOpenChange.</p>
+      </>
+    ),
+    props: [["side", "left | right", "left"], ["size", "sm | md | lg | custom string", "md"], ["closeLabel", "string", "Close sidebar"], ["closeOnEscape", "boolean", "true"], ["closeOnOverlay", "boolean", "true"]],
+  },
   {
     slug: "checkbox",
     title: "Checkbox",
@@ -241,7 +258,7 @@ export const componentDocs: Doc[] = [
     slug: "sidebar",
     title: "Sidebar",
     group: "Components",
-    description: "An in-flow sidebar with a side, a size, and a mobile layout.",
+    description: "A persistent panel that sits beside your page content.",
     code: `import { Sidebar } from '@fwenthehunter/friendly-ui';\n\n<div className="flex flex-wrap">\n  <Sidebar side="left" size="md" aria-label="Workspace">\n    <nav aria-label="Workspace navigation">...</nav>\n  </Sidebar>\n  <section className="min-w-0 flex-1">Your content</section>\n</div>`,
     preview: <SidebarExample />,
     content: (
@@ -254,12 +271,13 @@ export const componentDocs: Doc[] = [
           screen.
         </p>
         <p>
-          This Sidebar is a layout region. Use SidebarDrawer from
-          @fwenthehunter/friendly-ui/client for an overlay with a title, trigger, side,
-          size, and a large close button. It uses native dialog focus handling
-          and takes the full viewport width at 425px and below. Use
-          --fui-sidebar-width to set a custom desktop width. Supply an
-          accessible name when the page has multiple complementary regions.
+          Sidebar renders a server-compatible aside in the page layout. It is
+          always present: it has no trigger, overlay, open state, or close button.
+          The side control in this example only changes which side of the content
+          it occupies. Use <a href="../sidebar-drawer/">SidebarDrawer</a> for a
+          panel that opens over the page and can be dismissed. Use
+          --fui-sidebar-width for a custom desktop width, and supply an accessible
+          name when the page has multiple complementary regions.
         </p>
       </>
     ),

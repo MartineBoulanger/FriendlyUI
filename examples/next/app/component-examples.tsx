@@ -217,18 +217,6 @@ export function SidebarExample() {
           Size: {size}
         </Button>
       </div>
-      <SidebarDrawer
-        title="Workspace"
-        trigger="Open sidebar"
-        side={side}
-        size={size}
-      >
-        <nav aria-label="Drawer navigation">
-          <a href="#sidebar-overview">Overview</a>
-          <p>Projects</p>
-          <p>Settings</p>
-        </nav>
-      </SidebarDrawer>
       <div id="sidebar-overview" className="sidebar-demo-layout">
         <Sidebar side={side} size={size} aria-label="Example sidebar">
           <Heading as="h3">Workspace</Heading>
@@ -246,4 +234,23 @@ export function SidebarExample() {
 export function BrandToastExample() {
   const [open, setOpen] = useState(false);
   return <><Button onClick={() => setOpen(true)} disabled={open}>Show brand toast</Button><Toast variant="brand" open={open} onOpenChange={setOpen} title="Welcome">Your brand colors, with the same toast behavior.</Toast></>;
+}
+
+export function SidebarDrawerExample() {
+  const [side, setSide] = useState<"left" | "right">("left");
+  return (
+    <div className="preview-row">
+      <Button variant="secondary" size="sm" onClick={() => setSide(side === "left" ? "right" : "left")}>
+        Side: {side}
+      </Button>
+      <SidebarDrawer title="Workspace navigation" description="This drawer opens over the page content." trigger="Open navigation drawer" side={side} size="md">
+        <nav aria-label="Drawer example navigation">
+          <p><a href="#drawer-overview">Overview</a></p>
+          <p>Projects</p>
+          <p>Settings</p>
+        </nav>
+      </SidebarDrawer>
+      <span id="drawer-overview">Close the drawer to return to the page.</span>
+    </div>
+  );
 }

@@ -38,3 +38,10 @@ for (const slug of ['button', 'close-button', 'avatar', 'sidebar', 'sidebar-draw
 }
 const installPage = readFileSync(join(root, 'docs/installation/index.html'), 'utf8');
 for (const manager of ['npm install', 'pnpm add', 'yarn add', 'bun add']) assert.ok(installPage.includes(manager), `Missing ${manager} instructions`);
+
+const sidebarPage = readFileSync(join(root, 'docs/sidebar/index.html'), 'utf8');
+const drawerPage = readFileSync(join(root, 'docs/sidebar-drawer/index.html'), 'utf8');
+assert.match(sidebarPage, /class="fui-sidebar(?: |")/, 'Sidebar needs an in-page preview');
+assert.doesNotMatch(sidebarPage, /<dialog/, 'Sidebar preview must not open a drawer');
+assert.match(drawerPage, /Open navigation drawer/, 'Drawer needs its own trigger example');
+assert.match(drawerPage, /<dialog/, 'Drawer needs its own dialog preview');
