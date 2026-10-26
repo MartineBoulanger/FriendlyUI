@@ -314,7 +314,7 @@ export const docs: Doc[] = [
     preview: (
       <div className="preview-row">
         <Chip>In progress</Chip>
-        <Chip>Version 0.1</Chip>
+        <Chip>Version 0.2</Chip>
       </div>
     ),
     content: (
