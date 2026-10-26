@@ -23,7 +23,7 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "@friendly-ui/react";
+} from "@fwenthehunter/friendly-ui";
 
 test("native choices and selects submit actual form values without hydration", () => {
   const html = render(
@@ -168,7 +168,7 @@ test('pagination custom labels render on enabled links and disabled edges', () =
 });
 
 test('custom server-component sizes are emitted as styling hooks', async () => {
-  const { Button, CloseButton } = await import('@friendly-ui/react');
+  const { Button, CloseButton } = await import('@fwenthehunter/friendly-ui');
   for (const [Component, props] of [[Button,{}],[CloseButton,{}],[Avatar,{alt:'Ada'}],[Sidebar,{}]]) {
     assert.match(render(h(Component,{...props,size:'custom-size'})),/data-size="custom-size"/);
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@friendly-ui/react";
+import { Button } from "@fwenthehunter/friendly-ui";
 
 export function Counter() {
   const [count, setCount] = useState(0);

@@ -16,7 +16,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@friendly-ui/react";
+} from "@fwenthehunter/friendly-ui";
 import {
   ModalExample,
   PaginationExample,
@@ -28,14 +28,14 @@ import {
 import type { Doc } from "./docs";
 
 export const componentDocs: Doc[] = [
-  {slug:"close-button",title:"CloseButton",group:"Components",description:"An accessible dismiss control with a generous touch target.",code:'import { CloseButton } from "@friendly-ui/react";\n\n<CloseButton label="Close settings" />',preview:<CloseButton label="Close settings" />,content:<p>A server-compatible Button with a themed cross icon and a 44px default touch target. Set label for its accessible name. Define onClick in a client wrapper when adding dismissal behavior. Modal, Toast, and SidebarDrawer use this control internally.</p>,props:[["label","string","Close"],["variant","primary | secondary | ghost | custom string","ghost"],["size","sm | md | lg | custom string","md"]]},
-  {slug:"sidebar-drawer",title:"SidebarDrawer",group:"Components",description:"An overlaid sidebar with native dialog focus and dismissal.",code:'import { SidebarDrawer } from "@friendly-ui/react/client";\n\n<SidebarDrawer title="Workspace" trigger="Open sidebar" side="right" size="md">\n  Workspace navigation\n</SidebarDrawer>',content:<p>Import from the client entry point. Supports the Modal props for title, trigger, open/defaultOpen, onOpenChange, description, and dismissal settings. Choose left or right and a desktop width; at 425px and below it spans the full viewport. Use Sidebar for an in-flow layout instead.</p>,props:[["side","left | right","left"],["size","sm | md | lg | custom string","md"],["closeLabel","string","Close sidebar"]]},
+  {slug:"close-button",title:"CloseButton",group:"Components",description:"An accessible dismiss control with a generous touch target.",code:'import { CloseButton } from "@fwenthehunter/friendly-ui";\n\n<CloseButton label="Close settings" />',preview:<CloseButton label="Close settings" />,content:<p>A server-compatible Button with a themed cross icon and a 44px default touch target. Set label for its accessible name. Define onClick in a client wrapper when adding dismissal behavior. Modal, Toast, and SidebarDrawer use this control internally.</p>,props:[["label","string","Close"],["variant","primary | secondary | ghost | custom string","ghost"],["size","sm | md | lg | custom string","md"]]},
+  {slug:"sidebar-drawer",title:"SidebarDrawer",group:"Components",description:"An overlaid sidebar with native dialog focus and dismissal.",code:'import { SidebarDrawer } from "@fwenthehunter/friendly-ui/client";\n\n<SidebarDrawer title="Workspace" trigger="Open sidebar" side="right" size="md">\n  Workspace navigation\n</SidebarDrawer>',content:<p>Import from the client entry point. Supports the Modal props for title, trigger, open/defaultOpen, onOpenChange, description, and dismissal settings. Choose left or right and a desktop width; at 425px and below it spans the full viewport. Use Sidebar for an in-flow layout instead.</p>,props:[["side","left | right","left"],["size","sm | md | lg | custom string","md"],["closeLabel","string","Close sidebar"]]},
   {
     slug: "checkbox",
     title: "Checkbox",
     group: "Components",
     description: "Native checkboxes for independent choices.",
-    code: `import { Checkbox, Label } from '@friendly-ui/react';\n\n<Label className="flex items-center gap-2">\n  <Checkbox name="updates" defaultChecked />\n  Send me product updates\n</Label>`,
+    code: `import { Checkbox, Label } from '@fwenthehunter/friendly-ui';\n\n<Label className="flex items-center gap-2">\n  <Checkbox name="updates" defaultChecked />\n  Send me product updates\n</Label>`,
     preview: (
       <div className="choice-stack">
         <Label className="choice">
@@ -74,7 +74,7 @@ export const componentDocs: Doc[] = [
     title: "Radio",
     group: "Components",
     description: "One choice from a group, using native radio buttons.",
-    code: `import { Radio, Label } from '@friendly-ui/react';\n\n<fieldset>\n  <legend>Plan</legend>\n  <Label><Radio name="plan" value="free" defaultChecked /> Free</Label>\n  <Label><Radio name="plan" value="pro" /> Pro</Label>\n</fieldset>`,
+    code: `import { Radio, Label } from '@fwenthehunter/friendly-ui';\n\n<fieldset>\n  <legend>Plan</legend>\n  <Label><Radio name="plan" value="free" defaultChecked /> Free</Label>\n  <Label><Radio name="plan" value="pro" /> Pro</Label>\n</fieldset>`,
     preview: (
       <fieldset className="choice-stack">
         <legend>Plan</legend>
@@ -107,7 +107,7 @@ export const componentDocs: Doc[] = [
     title: "Select / Dropdown",
     group: "Components",
     description: "A simple dropdown for choosing a form value.",
-    code: `import { Select, Label } from '@friendly-ui/react';\n\n<Label htmlFor="language">Language</Label>\n<Select id="language" name="language" defaultValue="en">\n  <option value="en">English</option>\n  <option value="nl">Dutch</option>\n  <option value="fr">French</option>\n</Select>`,
+    code: `import { Select, Label } from '@fwenthehunter/friendly-ui';\n\n<Label htmlFor="language">Language</Label>\n<Select id="language" name="language" defaultValue="en">\n  <option value="en">English</option>\n  <option value="nl">Dutch</option>\n  <option value="fr">French</option>\n</Select>`,
     preview: (
       <div className="field">
         <Label htmlFor="preview-language">Language</Label>
@@ -144,7 +144,7 @@ export const componentDocs: Doc[] = [
     title: "Heading",
     group: "Components",
     description: "The heading API you already use, with portable theme styles.",
-    code: `import { Heading } from '@friendly-ui/react';\n\n<Heading>Page title</Heading>\n<Heading as="h2">Section title</Heading>\n<Heading as="h3" className="text-primary">A smaller heading</Heading>`,
+    code: `import { Heading } from '@fwenthehunter/friendly-ui';\n\n<Heading>Page title</Heading>\n<Heading as="h2">Section title</Heading>\n<Heading as="h3" className="text-primary">A smaller heading</Heading>`,
     preview: (
       <div className="choice-stack">
         <Heading>Page title</Heading>
@@ -174,7 +174,7 @@ export const componentDocs: Doc[] = [
     title: "Switch",
     group: "Components",
     description: "An on/off control that works without hydration.",
-    code: `import { Switch, Label } from '@friendly-ui/react';\n\n<Label className="flex items-center gap-2">\n  <Switch name="notifications" defaultChecked />\n  Notifications\n</Label>`,
+    code: `import { Switch, Label } from '@fwenthehunter/friendly-ui';\n\n<Label className="flex items-center gap-2">\n  <Switch name="notifications" defaultChecked />\n  Notifications\n</Label>`,
     preview: (
       <div className="choice-stack">
         <Label className="choice">
@@ -212,7 +212,7 @@ export const componentDocs: Doc[] = [
     title: "Separator / Divider",
     group: "Components",
     description: "A quiet boundary, horizontal or vertical.",
-    code: `import { Separator } from '@friendly-ui/react';\n\n<Separator />\n<div className="flex items-center gap-4">\n  <span>Profile</span>\n  <Separator orientation="vertical" />\n  <span>Settings</span>\n</div>\n<Separator decorative={false} />`,
+    code: `import { Separator } from '@fwenthehunter/friendly-ui';\n\n<Separator />\n<div className="flex items-center gap-4">\n  <span>Profile</span>\n  <Separator orientation="vertical" />\n  <span>Settings</span>\n</div>\n<Separator decorative={false} />`,
     preview: (
       <div className="choice-stack">
         <span>Account</span>
@@ -242,7 +242,7 @@ export const componentDocs: Doc[] = [
     title: "Sidebar",
     group: "Components",
     description: "An in-flow sidebar with a side, a size, and a mobile layout.",
-    code: `import { Sidebar } from '@friendly-ui/react';\n\n<div className="flex flex-wrap">\n  <Sidebar side="left" size="md" aria-label="Workspace">\n    <nav aria-label="Workspace navigation">...</nav>\n  </Sidebar>\n  <section className="min-w-0 flex-1">Your content</section>\n</div>`,
+    code: `import { Sidebar } from '@fwenthehunter/friendly-ui';\n\n<div className="flex flex-wrap">\n  <Sidebar side="left" size="md" aria-label="Workspace">\n    <nav aria-label="Workspace navigation">...</nav>\n  </Sidebar>\n  <section className="min-w-0 flex-1">Your content</section>\n</div>`,
     preview: <SidebarExample />,
     content: (
       <>
@@ -255,7 +255,7 @@ export const componentDocs: Doc[] = [
         </p>
         <p>
           This Sidebar is a layout region. Use SidebarDrawer from
-          @friendly-ui/react/client for an overlay with a title, trigger, side,
+          @fwenthehunter/friendly-ui/client for an overlay with a title, trigger, side,
           size, and a large close button. It uses native dialog focus handling
           and takes the full viewport width at 425px and below. Use
           --fui-sidebar-width to set a custom desktop width. Supply an
@@ -273,7 +273,7 @@ export const componentDocs: Doc[] = [
     title: "Search",
     group: "Components",
     description: "A native search input. You choose what it searches.",
-    code: `import { Search, Label, Button } from '@friendly-ui/react';\n\n<form action="/search" role="search">\n  <Label htmlFor="query">Search articles</Label>\n  <Search id="query" name="q" placeholder="Search…" />\n  <Button type="submit">Search</Button>\n</form>`,
+    code: `import { Search, Label, Button } from '@fwenthehunter/friendly-ui';\n\n<form action="/search" role="search">\n  <Label htmlFor="query">Search articles</Label>\n  <Search id="query" name="q" placeholder="Search…" />\n  <Button type="submit">Search</Button>\n</form>`,
     preview: <SearchExample />,
     content: (
       <>
@@ -298,7 +298,7 @@ export const componentDocs: Doc[] = [
     title: "Modal",
     group: "Components",
     description: "A native modal dialog with a small client boundary.",
-    code: `import { Modal } from '@friendly-ui/react/client';\n\n<Modal title="Edit profile" trigger="Open profile" size="sm"\n  description="Update your public details.">\n  <p>Your content goes here.</p>\n</Modal>`,
+    code: `import { Modal } from '@fwenthehunter/friendly-ui/client';\n\n<Modal title="Edit profile" trigger="Open profile" size="sm"\n  description="Update your public details.">\n  <p>Your content goes here.</p>\n</Modal>`,
     preview: <ModalExample />,
     content: (
       <>
@@ -338,7 +338,7 @@ export const componentDocs: Doc[] = [
     title: "Tabs",
     group: "Components",
     description: "Related panels with keyboard-friendly navigation.",
-    code: `import { Tabs } from '@friendly-ui/react/client';\n\n<Tabs label="Project" defaultValue="overview" items={[\n  { value: 'overview', label: 'Overview', content: <p>Your project.</p> },\n  { value: 'settings', label: 'Settings', content: <p>Preferences.</p> },\n]} />`,
+    code: `import { Tabs } from '@fwenthehunter/friendly-ui/client';\n\n<Tabs label="Project" defaultValue="overview" items={[\n  { value: 'overview', label: 'Overview', content: <p>Your project.</p> },\n  { value: 'settings', label: 'Settings', content: <p>Preferences.</p> },\n]} />`,
     preview: <TabsExample />,
     content: (
       <>
@@ -369,7 +369,7 @@ export const componentDocs: Doc[] = [
     title: "Avatar",
     group: "Components",
     description: "An image or a small set of initials.",
-    code: `import { Avatar } from '@friendly-ui/react';\n\n<Avatar alt="Ada Lovelace" />\n<Avatar alt="Grace Hopper" fallback="GH" size="lg" />\n<Avatar src="/avatar.jpg" alt="Your name" />`,
+    code: `import { Avatar } from '@fwenthehunter/friendly-ui';\n\n<Avatar alt="Ada Lovelace" />\n<Avatar alt="Grace Hopper" fallback="GH" size="lg" />\n<Avatar src="/avatar.jpg" alt="Your name" />`,
     preview: (
       <div className="preview-row">
         <Avatar alt="Ada Lovelace" size="sm" />
@@ -405,7 +405,7 @@ export const componentDocs: Doc[] = [
     title: "Pagination",
     group: "Components",
     description: "Real links that work on the server and in the browser.",
-    code: `import { Pagination } from '@friendly-ui/react';\n\n<Pagination page={3} totalPages={20}\n  href={page => '/articles?page=' + page}\n  previousLabel="← Previous" nextLabel="Next →" />`,
+    code: `import { Pagination } from '@fwenthehunter/friendly-ui';\n\n<Pagination page={3} totalPages={20}\n  href={page => '/articles?page=' + page}\n  previousLabel="← Previous" nextLabel="Next →" />`,
     preview: <PaginationExample />,
     content: (
       <>
@@ -441,7 +441,7 @@ export const componentDocs: Doc[] = [
     title: "Table",
     group: "Components",
     description: "A semantic table, without a data-grid framework.",
-    code: `import { Table, TableCaption, TableHeader, TableBody,\n  TableRow, TableHead, TableCell, TableContainer } from '@friendly-ui/react';\n\n<TableContainer>\n  <Table>\n    <TableCaption>Team members</TableCaption>\n    <TableHeader><TableRow>\n      <TableHead>Name</TableHead><TableHead>Role</TableHead>\n    </TableRow></TableHeader>\n    <TableBody><TableRow>\n      <TableCell>Ada Lovelace</TableCell><TableCell>Developer</TableCell>\n    </TableRow></TableBody>\n  </Table>\n</TableContainer>`,
+    code: `import { Table, TableCaption, TableHeader, TableBody,\n  TableRow, TableHead, TableCell, TableContainer } from '@fwenthehunter/friendly-ui';\n\n<TableContainer>\n  <Table>\n    <TableCaption>Team members</TableCaption>\n    <TableHeader><TableRow>\n      <TableHead>Name</TableHead><TableHead>Role</TableHead>\n    </TableRow></TableHeader>\n    <TableBody><TableRow>\n      <TableCell>Ada Lovelace</TableCell><TableCell>Developer</TableCell>\n    </TableRow></TableBody>\n  </Table>\n</TableContainer>`,
     preview: (
       <TableContainer>
         <Table>
@@ -486,7 +486,7 @@ export const componentDocs: Doc[] = [
     title: "Toast",
     group: "Components",
     description: "A dismissible notification with no global provider.",
-    code: `'use client';\nimport { useState } from 'react';\nimport { Button } from '@friendly-ui/react';\nimport { Toast } from '@friendly-ui/react/client';\n\nexport function SaveNotice() {\n  const [open, setOpen] = useState(false);\n  return <>\n    <Button onClick={() => setOpen(true)}>Save</Button>\n    <Toast open={open} onOpenChange={setOpen} title="Changes saved"\n      variant="success" position="top-center" duration={8000} showTimer>\n      Your preferences are up to date.\n    </Toast>\n  </>;\n}`,
+    code: `'use client';\nimport { useState } from 'react';\nimport { Button } from '@fwenthehunter/friendly-ui';\nimport { Toast } from '@fwenthehunter/friendly-ui/client';\n\nexport function SaveNotice() {\n  const [open, setOpen] = useState(false);\n  return <>\n    <Button onClick={() => setOpen(true)}>Save</Button>\n    <Toast open={open} onOpenChange={setOpen} title="Changes saved"\n      variant="success" position="top-center" duration={8000} showTimer>\n      Your preferences are up to date.\n    </Toast>\n  </>;\n}`,
     preview: <ToastExample />,
     content: (
       <>

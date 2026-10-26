@@ -3,7 +3,7 @@ import { test, beforeEach, afterEach } from "node:test";
 import { JSDOM } from "jsdom";
 import { createElement as h, act } from "react";
 import { createRoot } from "react-dom/client";
-import { Modal, Tabs, Toast } from "@friendly-ui/react/client";
+import { Modal, Tabs, Toast } from "@fwenthehunter/friendly-ui/client";
 
 let dom, root, container;
 beforeEach(() => {
@@ -327,7 +327,7 @@ test("toast supports six positions, four semantic types, and an optional paused 
 });
 
 test("sidebar drawer opens a native dialog with side, size, and the shared close control", async () => {
-  const { SidebarDrawer } = await import("@friendly-ui/react/client");
+  const { SidebarDrawer } = await import("@fwenthehunter/friendly-ui/client");
   await render(
     h(
       SidebarDrawer,
@@ -351,7 +351,7 @@ test("sidebar drawer opens a native dialog with side, size, and the shared close
 });
 
 test('custom button and toast variants reach their CSS selectors without changing semantics', async () => {
-  const { Button } = await import('@friendly-ui/react');
+  const { Button } = await import('@fwenthehunter/friendly-ui');
   await render(h('div',{},h(Button,{variant:'danger'},'Delete'),h(Toast,{variant:'brand',open:true,duration:0,onOpenChange:()=>{},title:'Welcome'})));
   assert.equal(container.querySelector('button').dataset.variant,'danger');
   assert.equal(container.querySelector('.fui-toast').dataset.variant,'brand');
@@ -359,7 +359,7 @@ test('custom button and toast variants reach their CSS selectors without changin
 });
 
 test('modal and sidebar drawer forward custom sizes to their dialogs', async () => {
-  const { SidebarDrawer } = await import('@friendly-ui/react/client');
+  const { SidebarDrawer } = await import('@fwenthehunter/friendly-ui/client');
   await render(h(Modal,{title:'Wide modal',size:'wide',open:true}));
   assert.equal(container.querySelector('dialog').dataset.size,'wide');
   await render(h(SidebarDrawer,{title:'Wide sidebar',size:'wide',open:true}));

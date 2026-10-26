@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup as render } from 'react-dom/server';
 import { JSDOM } from 'jsdom';
-import { Badge, Chip, Button, Avatar } from '@friendly-ui/react';
+import { Badge, Chip, Button, Avatar } from '@fwenthehunter/friendly-ui';
 
 test('Chip retains the compact label and native props', () => {
   assert.equal(render(h(Chip, {className:'custom','data-status':'pending'}, 'Pending')), '<span data-status="pending" class="fui-chip custom">Pending</span>');

@@ -1,8 +1,8 @@
 # Friendly UI
 
-[Online documentation](https://martineboulanger.github.io/FriendlyUI/) · [Component reference](https://martineboulanger.github.io/FriendlyUI/docs/button/)
+[npm package](https://www.npmjs.com/package/@fwenthehunter/friendly-ui) · [Online documentation](https://martineboulanger.github.io/FriendlyUI/) · [Component reference](https://martineboulanger.github.io/FriendlyUI/docs/button/)
 
-A small UI package for the Next.js App Router, with server-compatible components and opt-in client interactivity. This is a working foundation, not a complete design system. The package name is local and has not been published or checked for availability.
+A small UI package for the Next.js App Router, with server-compatible components and opt-in client interactivity. An early-stage component library, published as @fwenthehunter/friendly-ui under the MIT license.
 
 ## Run locally
 
@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. After editing the package source, rebuild it with `npm run build -w @friendly-ui/react`; the example app supports normal Next.js hot reload for its own files.
+Open http://localhost:3000. After editing the package source, rebuild it with `npm run build -w @fwenthehunter/friendly-ui`; the example app supports normal Next.js hot reload for its own files.
 
 ```sh
 npm test
@@ -25,7 +25,7 @@ npm run build
 
 ```tsx
 // app/page.tsx — no client directive needed
-import { Button, Card, Accordion } from '@friendly-ui/react';
+import { Button, Card, Accordion } from '@fwenthehunter/friendly-ui';
 
 export default function Page() {
   return (
@@ -45,7 +45,7 @@ Server-compatible components: Button, Card, Input, Textarea, Label, Chip, Badge,
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@friendly-ui/react';
+import { Button } from '@fwenthehunter/friendly-ui';
 
 export function Counter() {
   const [count, setCount] = useState(0);
@@ -61,8 +61,8 @@ The included app uses Tailwind v4. Import these once in your app's global CSS, i
 
 ```css
 @import "tailwindcss";
-@import "@friendly-ui/react/styles.css";
-@import "@friendly-ui/react/tailwind.css";
+@import "@fwenthehunter/friendly-ui/styles.css";
+@import "@fwenthehunter/friendly-ui/tailwind.css";
 @import "./theme.css";
 ```
 
@@ -85,7 +85,7 @@ Tokens: `--fui-background`, `--fui-foreground`, `--fui-surface`, `--fui-muted`, 
 
 ## Plain CSS / CSS Modules
 
-Tailwind is optional. Import `@friendly-ui/react/styles.css` once in your root layout and your own theme CSS after it. Skip `tailwind.css`. Override stable `.fui-*` classes, pass CSS Module classes through `className`, or use `style`. Unlayered app CSS takes precedence over the layered defaults. The package does not apply a global reset.
+Tailwind is optional. Import `@fwenthehunter/friendly-ui/styles.css` once in your root layout and your own theme CSS after it. Skip `tailwind.css`. Override stable `.fui-*` classes, pass CSS Module classes through `className`, or use `style`. Unlayered app CSS takes precedence over the layered defaults. The package does not apply a global reset.
 
 ## Structure and scope
 
@@ -93,14 +93,14 @@ Tailwind is optional. Import `@friendly-ui/react/styles.css` once in your root l
 - `examples/next`: a real App Router app with a server page and a small client counter.
 - `scripts`: build helpers and HTML contract tests.
 
-`npm run build -w @friendly-ui/react` builds the package; `npm pack -w @friendly-ui/react` creates an installable tarball. Next.js is only required by the example, so the primitives also work in React apps. The build uses TypeScript rather than bundling the library, preserving the client entry point’s module directive.
+`npm run build -w @fwenthehunter/friendly-ui` builds the package; `npm pack -w @fwenthehunter/friendly-ui` creates an installable tarball. Next.js is only required by the example, so the primitives also work in React apps. The build uses TypeScript rather than bundling the library, preserving the client entry point’s module directive.
 
 ## Interactive components
 
 Modal, Tabs, and Toast are available from a separate client entry point:
 
 ```tsx
-import { Modal, Tabs } from '@friendly-ui/react/client';
+import { Modal, Tabs } from '@fwenthehunter/friendly-ui/client';
 
 <Modal title="Settings" trigger="Open settings" size="sm">
   <p>Your settings form.</p>
@@ -147,7 +147,7 @@ The documentation is hosted separately on GitHub Pages. Package consumers can us
 
 Chip is the compact label previously named Badge. Badge now wraps another element and overlays a count or status dot: `<Badge content={3}><Avatar alt="Ada Lovelace" /></Badge>`. Both remain server-compatible.
 
-Dismiss controls use the shared `CloseButton` (44px touch target, 24px themed icon). `SidebarDrawer` from `@friendly-ui/react/client` adds a dismissible native-dialog sidebar with `side`, `size`, `title`, and `trigger`; it spans the viewport at 425px and below. The original Sidebar remains an in-flow layout region.
+Dismiss controls use the shared `CloseButton` (44px touch target, 24px themed icon). `SidebarDrawer` from `@fwenthehunter/friendly-ui/client` adds a dismissible native-dialog sidebar with `side`, `size`, `title`, and `trigger`; it spans the viewport at 425px and below. The original Sidebar remains an in-flow layout region.
 
 Toast accepts `duration` in milliseconds (`0` keeps it open), `showTimer` for an optional countdown bar, `variant="default|error|warning|success|info"`, and any of `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, or `bottom-right`. Countdown pauses on hover and focus. Override each variant’s `--fui-toast-<variant>-background`, `--fui-toast-<variant>-foreground`, and `--fui-toast-<variant>-border` tokens to customize its palette. Native Chromium/Safari search clear controls use `--fui-search-clear` (defaults to the muted theme color).
 
@@ -177,22 +177,22 @@ The online reference for each relevant component includes its own complete CSS a
 
 ## Choose your package manager
 
-The published package will work with npm, pnpm, Yarn, and Bun. There is one standard package artifact; it does not require consumers to use this repository’s npm workspace setup. React 19 and React DOM 19 are peer dependencies. The package is not published yet, so these registry commands are for after release:
+The package works with npm, pnpm, Yarn, and Bun. There is one standard package artifact; it does not require consumers to use this repository’s npm workspace setup. React 19 and React DOM 19 are peer dependencies. Install it in your application using one of these commands:
 
 ```sh
-npm install @friendly-ui/react
-pnpm add @friendly-ui/react
-yarn add @friendly-ui/react
-bun add @friendly-ui/react
+npm install @fwenthehunter/friendly-ui
+pnpm add @fwenthehunter/friendly-ui
+yarn add @fwenthehunter/friendly-ui
+bun add @fwenthehunter/friendly-ui
 ```
 
-For now, build and pack with `npm run build -w @friendly-ui/react` followed by `npm pack -w @friendly-ui/react`. In your app, install the resulting tarball with your preferred manager:
+To test local changes before the next release, build and pack with `npm run build -w @fwenthehunter/friendly-ui` followed by `npm pack -w @fwenthehunter/friendly-ui`. In your app, install the resulting tarball with your preferred manager:
 
 ```sh
-npm install /path/to/friendly-ui-react-0.1.0.tgz
-pnpm add /path/to/friendly-ui-react-0.1.0.tgz
-yarn add file:/path/to/friendly-ui-react-0.1.0.tgz
-bun add /path/to/friendly-ui-react-0.1.0.tgz
+npm install /path/to/fwenthehunter-friendly-ui-0.1.0.tgz
+pnpm add /path/to/fwenthehunter-friendly-ui-0.1.0.tgz
+yarn add file:/path/to/fwenthehunter-friendly-ui-0.1.0.tgz
+bun add /path/to/fwenthehunter-friendly-ui-0.1.0.tgz
 ```
 
 Choose one command, replace the path, and keep using your app’s existing lockfile. The tarball includes built JavaScript, CSS, and TypeScript declarations and needs no installation-time build.

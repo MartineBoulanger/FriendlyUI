@@ -9,7 +9,7 @@ import {
   Input,
   Label,
   Textarea,
-} from "@friendly-ui/react";
+} from "@fwenthehunter/friendly-ui";
 import { InstallGuide } from "./install-guide";
 import { componentDocs } from "./component-docs";
 import { Counter } from "../app/counter";
@@ -29,14 +29,12 @@ export const docs: Doc[] = [
     slug: "installation",
     title: "Installation",
     group: "Start here",
-    description: "From a local package to your first component.",
-    code: `# In this repository\nnpm install\nnpm run dev\n\n# Create a distributable package\nnpm run build -w @friendly-ui/react\nnpm pack -w @friendly-ui/react\n\n# In another Next.js app (use the actual tarball path)\nnpm install /path/to/friendly-ui-react-0.1.0.tgz`,
+    description: "Install Friendly UI in your Next.js project.",
+    code: `# Choose your package manager\nnpm install @fwenthehunter/friendly-ui\npnpm add @fwenthehunter/friendly-ui\nyarn add @fwenthehunter/friendly-ui\nbun add @fwenthehunter/friendly-ui`,
     content: (
       <>
         <p>
-          Friendly UI is currently a local package, not a published npm release.
-          Use the workspace example or install its tarball in another Next.js
-          App Router app. React 19 is required.
+          Install @fwenthehunter/friendly-ui in your Next.js App Router application. React 19 and React DOM 19 are required. Friendly UI is MIT licensed.
         </p>
         <InstallGuide />
         <h2>Load the styles once</h2>
@@ -45,7 +43,7 @@ export const docs: Doc[] = [
           optional Tailwind bridge, and then your own theme.
         </p>
         <pre>
-          <code>{`@import "tailwindcss";\n@import "@friendly-ui/react/styles.css";\n@import "@friendly-ui/react/tailwind.css";\n@import "./theme.css";`}</code>
+          <code>{`@import "tailwindcss";\n@import "@fwenthehunter/friendly-ui/styles.css";\n@import "@fwenthehunter/friendly-ui/tailwind.css";\n@import "./theme.css";`}</code>
         </pre>
         <p>
           Import that global CSS from your root layout. With plain CSS, skip
@@ -54,7 +52,7 @@ export const docs: Doc[] = [
         </p>
         <h2>Use a component</h2>
         <pre>
-          <code>{`import { Button } from '@friendly-ui/react';\n\nexport default function Page() {\n  return <Button>Get started</Button>;\n}`}</code>
+          <code>{`import { Button } from '@fwenthehunter/friendly-ui';\n\nexport default function Page() {\n  return <Button>Get started</Button>;\n}`}</code>
         </pre>
       </>
     ),
@@ -137,14 +135,14 @@ export const docs: Doc[] = [
     group: "Start here",
     description:
       "Keep the page on the server. Add interaction where it belongs.",
-    code: `'use client';\n\nimport { useState } from 'react';\nimport { Button } from '@friendly-ui/react';\n\nexport function Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    <Button onClick={() => setCount(count + 1)}>\n      Clicked {count} times\n    </Button>\n  );\n}`,
+    code: `'use client';\n\nimport { useState } from 'react';\nimport { Button } from '@fwenthehunter/friendly-ui';\n\nexport function Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    <Button onClick={() => setCount(count + 1)}>\n      Clicked {count} times\n    </Button>\n  );\n}`,
     preview: <Counter />,
     content: (
       <>
         <p>
           The default entry point exports server-compatible components built
           from native HTML. Modal, Tabs, and Toast live in the explicit
-          @friendly-ui/react/client entry point. A Server Component can render
+          @fwenthehunter/friendly-ui/client entry point. A Server Component can render
           those client components while keeping the rest of the page on the
           server.
         </p>
@@ -181,7 +179,7 @@ export const docs: Doc[] = [
     title: "Button",
     group: "Components",
     description: "A native button, ready for forms and small interactions.",
-    code: `import { Button } from '@friendly-ui/react';\n\n<Button>Continue</Button>\n<Button variant="secondary">Cancel</Button>\n<Button variant="ghost" size="sm">Learn more</Button>\n<Button type="submit">Save changes</Button>`,
+    code: `import { Button } from '@fwenthehunter/friendly-ui';\n\n<Button>Continue</Button>\n<Button variant="secondary">Cancel</Button>\n<Button variant="ghost" size="sm">Learn more</Button>\n<Button type="submit">Save changes</Button>`,
     preview: (
       <div className="preview-row">
         <Button>Continue</Button>
@@ -217,7 +215,7 @@ export const docs: Doc[] = [
     title: "Card",
     group: "Components",
     description: "A quiet surface for related content.",
-    code: `import { Card } from '@friendly-ui/react';\n\n<Card className="space-y-2">\n  <h2>Your next idea</h2>\n  <p>Start with something small.</p>\n</Card>`,
+    code: `import { Card } from '@fwenthehunter/friendly-ui';\n\n<Card className="space-y-2">\n  <h2>Your next idea</h2>\n  <p>Start with something small.</p>\n</Card>`,
     preview: (
       <Card>
         <h3>Your next idea</h3>
@@ -237,7 +235,7 @@ export const docs: Doc[] = [
     title: "Input",
     group: "Components",
     description: "Native inputs with an accessible, familiar foundation.",
-    code: `import { Input, Label } from '@friendly-ui/react';\n\n<Label htmlFor="email">Email</Label>\n<Input id="email" name="email" type="email"\n  autoComplete="email" placeholder="you@example.com" />`,
+    code: `import { Input, Label } from '@fwenthehunter/friendly-ui';\n\n<Label htmlFor="email">Email</Label>\n<Input id="email" name="email" type="email"\n  autoComplete="email" placeholder="you@example.com" />`,
     preview: (
       <div className="field">
         <Label htmlFor="preview-email">Email</Label>
@@ -269,7 +267,7 @@ export const docs: Doc[] = [
     title: "Textarea",
     group: "Components",
     description: "A little more room to express an idea.",
-    code: `import { Textarea, Label } from '@friendly-ui/react';\n\n<Label htmlFor="message">Message</Label>\n<Textarea id="message" name="message" rows={4}\n  placeholder="What are you building?" />`,
+    code: `import { Textarea, Label } from '@fwenthehunter/friendly-ui';\n\n<Label htmlFor="message">Message</Label>\n<Textarea id="message" name="message" rows={4}\n  placeholder="What are you building?" />`,
     preview: (
       <div className="field">
         <Label htmlFor="preview-message">Message</Label>
@@ -293,7 +291,7 @@ export const docs: Doc[] = [
     title: "Label",
     group: "Components",
     description: "Give each form control a clear name.",
-    code: `import { Label, Input } from '@friendly-ui/react';\n\n<Label htmlFor="name">Full name</Label>\n<Input id="name" name="name" autoComplete="name" />`,
+    code: `import { Label, Input } from '@fwenthehunter/friendly-ui';\n\n<Label htmlFor="name">Full name</Label>\n<Input id="name" name="name" autoComplete="name" />`,
     preview: (
       <div className="field">
         <Label htmlFor="preview-name">Full name</Label>
@@ -312,7 +310,7 @@ export const docs: Doc[] = [
     title: "Chip",
     group: "Components",
     description: "A compact label for status, categories, and metadata.",
-    code: `import { Chip } from '@friendly-ui/react';\n\n<Chip>In progress</Chip>`,
+    code: `import { Chip } from '@fwenthehunter/friendly-ui';\n\n<Chip>In progress</Chip>`,
     preview: (
       <div className="preview-row">
         <Chip>In progress</Chip>
@@ -332,7 +330,7 @@ export const docs: Doc[] = [
     title: "Badge",
     group: "Components",
     description: "A count or status dot over an avatar, button, or icon.",
-    code: `import { Avatar, Badge, Button } from '@friendly-ui/react';\n\n<Badge content={3} label="3 unread notifications">\n  <Button variant="secondary" aria-label="Notifications, 3 unread">Notifications</Button>\n</Badge>\n\n<Badge dot label="Online" position="bottom-right">\n  <Avatar alt="Ada Lovelace" />\n</Badge>`,
+    code: `import { Avatar, Badge, Button } from '@fwenthehunter/friendly-ui';\n\n<Badge content={3} label="3 unread notifications">\n  <Button variant="secondary" aria-label="Notifications, 3 unread">Notifications</Button>\n</Badge>\n\n<Badge dot label="Online" position="bottom-right">\n  <Avatar alt="Ada Lovelace" />\n</Badge>`,
     preview: (
       <div className="preview-row" style={{ gap: "2rem", padding: ".5rem" }}>
         <Badge content={3} label="3 unread notifications">
@@ -390,7 +388,7 @@ export const docs: Doc[] = [
     group: "Components",
     description:
       "A disclosure powered by the browser. No client wrapper needed.",
-    code: `import { Accordion } from '@friendly-ui/react';\n\n<Accordion title="Does this need JavaScript?">\n  No. Native details and summary handle the interaction.\n</Accordion>`,
+    code: `import { Accordion } from '@fwenthehunter/friendly-ui';\n\n<Accordion title="Does this need JavaScript?">\n  No. Native details and summary handle the interaction.\n</Accordion>`,
     preview: (
       <Accordion title="Does this need JavaScript?">
         No. Native details and summary handle the interaction.

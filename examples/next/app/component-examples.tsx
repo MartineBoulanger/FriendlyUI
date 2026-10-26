@@ -9,14 +9,14 @@ import {
   Sidebar,
   Heading,
   Select,
-} from "@friendly-ui/react";
+} from "@fwenthehunter/friendly-ui";
 import {
   Modal,
   Tabs,
   Toast,
   SidebarDrawer,
   type ToastProps,
-} from "@friendly-ui/react/client";
+} from "@fwenthehunter/friendly-ui/client";
 
 export function ModalExample() {
   return (

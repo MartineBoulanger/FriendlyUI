@@ -3,8 +3,8 @@ import {
   CloseButton,
   Pagination,
   type ButtonVariant,
-} from "@friendly-ui/react";
-import { Toast, type ToastVariant } from "@friendly-ui/react/client";
+} from "@fwenthehunter/friendly-ui";
+import { Toast, type ToastVariant } from "@fwenthehunter/friendly-ui/client";
 
 const customButton: ButtonVariant = "danger";
 const customToast: ToastVariant = "brand";
@@ -23,12 +23,12 @@ const customToast: ToastVariant = "brand";
 // @ts-expect-error Variant names must still be strings.
 const invalidToastVariant: ToastVariant = { name: "brand" };
 
-import { Avatar, Sidebar, type Size } from "@friendly-ui/react";
+import { Avatar, Sidebar, type Size } from "@fwenthehunter/friendly-ui";
 import {
   Modal,
   SidebarDrawer,
   type ModalSize,
-} from "@friendly-ui/react/client";
+} from "@fwenthehunter/friendly-ui/client";
 const extraSize: Size = "xl";
 const extraModalSize: ModalSize = "wide";
 <Button size={extraSize} />;

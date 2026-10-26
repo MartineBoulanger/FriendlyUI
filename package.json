@@ -6,10 +6,10 @@
     "examples/*"
   ],
   "scripts": {
-    "dev": "npm run build -w @friendly-ui/react && npm run dev -w friendly-ui-example",
-    "build": "npm run build -w @friendly-ui/react && npm run build -w friendly-ui-example",
+    "dev": "npm run build -w @fwenthehunter/friendly-ui && npm run dev -w friendly-ui-example",
+    "build": "npm run build -w @fwenthehunter/friendly-ui && npm run build -w friendly-ui-example",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "test": "npm run build -w @friendly-ui/react && node --test scripts/*.test.mjs && tsc -p scripts/tsconfig.json",
+    "test": "npm run build -w @fwenthehunter/friendly-ui && node --test scripts/*.test.mjs && tsc -p scripts/tsconfig.json",
     "check:docs": "node scripts/check-docs.mjs"
   },
   "devDependencies": {

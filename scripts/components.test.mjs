@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
-import { Button, Input, Label, Accordion, Card } from "@friendly-ui/react";
+import { Button, Input, Label, Accordion, Card } from "@fwenthehunter/friendly-ui";
 
 test("button defaults to a non-submitting native control and preserves form attributes", () => {
   const html = renderToStaticMarkup(createElement(Button, { form: "settings", disabled: true }, "Save"));

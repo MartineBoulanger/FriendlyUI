@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@friendly-ui/react/styles.css";
-@import "@friendly-ui/react/tailwind.css";
+@import "@fwenthehunter/friendly-ui/styles.css";
+@import "@fwenthehunter/friendly-ui/tailwind.css";
 @import "./theme.css";
 
 body { margin: 0; background: var(--fui-background); color: var(--fui-foreground); font-family: var(--fui-font); }

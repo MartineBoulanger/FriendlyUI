@@ -7,7 +7,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@friendly-ui/react": "*",
+    "@fwenthehunter/friendly-ui": "*",
     "next": "latest",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
