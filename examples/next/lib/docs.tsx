@@ -319,8 +319,7 @@ export const docs: Doc[] = [
     ),
     content: (
       <p>
-        Previously named Badge. Chip renders a styled span for short labels. Use
-        Badge when you need a count or dot over an avatar or control. Chip is
+        Chip renders a styled span for short labels. Chip is
         not interactive and does not announce changes automatically.
       </p>
     ),
