@@ -21,12 +21,7 @@ const customToast: ToastVariant = "brand";
 // @ts-expect-error Variant names must still be strings.
 <Button variant={42} />;
 // @ts-expect-error Variant names must still be strings.
-<Toast
-  open
-  onOpenChange={() => {}}
-  title="Invalid"
-  variant={{ name: "brand" }}
-/>;
+const invalidToastVariant: ToastVariant = { name: "brand" };
 
 import { Avatar, Sidebar, type Size } from "@friendly-ui/react";
 import {
