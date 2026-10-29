@@ -1,12 +1,14 @@
 "use client";
 
 import {
+  cloneElement,
   useEffect,
   useId,
   useRef,
   useState,
   type ComponentPropsWithoutRef,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import { Button, CloseButton } from "./index.js";
 import type { ExtensibleVariant, ExtensibleString, Size } from "./types.js";
@@ -401,5 +403,66 @@ export function Toast({
         )}
       </div>
     </div>
+  );
+}
+
+export type TooltipProps = Omit<ComponentPropsWithoutRef<"span">, "children" | "content"> & {
+  /** One focusable element that forwards aria-describedby to its DOM element. */
+  children: ReactElement<{ "aria-describedby"?: string }>;
+  /** Descriptive text only; use a Modal for interactive content. */
+  content: string;
+  side?: "top" | "right" | "bottom" | "left";
+};
+
+/** A description shown on pointer hover or keyboard focus. */
+export function Tooltip({ children, content, side = "top", className, ...props }: TooltipProps) {
+  const id = useId();
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const open = (hovered || focused) && !dismissed && content.length > 0;
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setDismissed(true);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+  return (
+    <span
+      {...props}
+      className={["fui-tooltip", className].filter(Boolean).join(" ")}
+      data-side={side}
+      onPointerEnter={(event) => {
+        props.onPointerEnter?.(event);
+        if (!event.defaultPrevented && event.pointerType !== "touch") {
+          setHovered(true);
+          setDismissed(false);
+        }
+      }}
+      onPointerLeave={(event) => {
+        props.onPointerLeave?.(event);
+        setHovered(false);
+      }}
+      onFocus={(event) => {
+        props.onFocus?.(event);
+        if (!event.defaultPrevented) {
+          setFocused(true);
+          setDismissed(false);
+        }
+      }}
+      onBlur={(event) => {
+        props.onBlur?.(event);
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+      }}
+    >
+      {cloneElement(children, {
+        "aria-describedby": [children.props["aria-describedby"], content ? id : null].filter(Boolean).join(" ") || undefined,
+      })}
+      <span id={id} role="tooltip" className="fui-tooltip-content" hidden={!open}>
+        {content}
+      </span>
+    </span>
   );
 }

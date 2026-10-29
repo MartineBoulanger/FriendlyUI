@@ -25,10 +25,28 @@ import {
   DrawerExample,
   TabsExample,
   ToastExample,
+  TooltipExample,
 } from "../app/component-examples";
 import type { Doc } from "./docs";
 
 export const componentDocs: Doc[] = [
+  {
+    slug: "tooltip",
+    title: "Tooltip",
+    group: "Components",
+    description: "A short description shown on hover or keyboard focus.",
+    code: 'import { Button } from "@fwenthehunter/friendly-ui";\nimport { Tooltip } from "@fwenthehunter/friendly-ui/client";\n\n<Tooltip content="Save your changes" side="top">\n  <Button>Save</Button>\n</Tooltip>',
+    preview: <TooltipExample />,
+    content: <>
+      <p>Wrap one focusable element, such as Button or a link. Hover over it or focus it with Tab to reveal the description; Escape dismisses it without moving focus. The tooltip stays open while the pointer is over its text. Existing aria-describedby references, child event handlers, and refs are preserved. Custom trigger components must forward aria-describedby to their focusable DOM element.</p>
+      <p>Import from the client entry point. A Server Component can render Tooltip with its content and children; no client wrapper is needed unless you add your own event handlers. The tooltip supplies a description, so icon-only triggers still need an accessible name such as aria-label. Avoid disabled triggers because they cannot receive keyboard focus.</p>
+      <p>Use short text, not buttons or links inside the tooltip. Keep essential instructions visible on the page: hover tooltips are not a reliable way to deliver information on touch screens. Use Modal for interactive content.</p>
+      <p>Choose top, right, bottom, or left with side. Positioning uses CSS relative to the trigger, without automatic edge detection or a portal. Allow space on the chosen side and avoid ancestors with overflow: hidden or overflow: auto when they would clip the tooltip.</p>
+      <p>Customize .fui-tooltip-content in your theme file, or set --fui-tooltip-background and --fui-tooltip-foreground. They default to the theme foreground and background colors. className and style apply to the wrapper.</p>
+    </>,
+    props: [["content", "string", "required"], ["children", "one focusable React element", "required"], ["side", "top | right | bottom | left", "top"]],
+  },
+
   {slug:"close-button",title:"CloseButton",group:"Components",description:"An accessible dismiss control with a generous touch target.",code:'import { CloseButton } from "@fwenthehunter/friendly-ui";\n\n<CloseButton label="Close settings" />',preview:<CloseButton label="Close settings" />,content:<p>A server-compatible Button with a themed cross icon and a 44px default touch target. Set label for its accessible name. Define onClick in a client wrapper when adding dismissal behavior. Modal, Toast, and Drawer use this control internally.</p>,props:[["label","string","Close"],["variant","primary | secondary | ghost | custom string","ghost"],["size","sm | md | lg | custom string","md"]]},
   {
     slug: "drawer",

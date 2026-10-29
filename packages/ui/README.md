@@ -36,3 +36,16 @@ Pass your own string to the supported `variant` and `size` props, and define its
 ## License
 
 MIT. See LICENSE in the package.
+
+## Tooltip
+
+```tsx
+import { Button } from "@fwenthehunter/friendly-ui";
+import { Tooltip } from "@fwenthehunter/friendly-ui/client";
+
+<Tooltip content="Save your changes" side="top">
+  <Button>Save</Button>
+</Tooltip>
+```
+
+Opens on hover or keyboard focus; Escape dismisses it. Choose top, right, bottom, or left. Customize `--fui-tooltip-background` and `--fui-tooltip-foreground` in your theme. Keep essential instructions visible for touch users. Positioning uses CSS without automatic edge detection or a portal.

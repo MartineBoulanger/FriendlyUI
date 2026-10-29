@@ -41,3 +41,12 @@ const extraModalSize: ModalSize = "wide";
 <Avatar alt="Ada" size={42} />;
 // @ts-expect-error Modal size names must be strings.
 <Modal title="Details" size={42} />;
+
+import { Tooltip } from '@fwenthehunter/friendly-ui/client';
+<Tooltip content="Save changes" side="right"><Button>Save</Button></Tooltip>;
+// @ts-expect-error Tooltip content is descriptive text.
+<Tooltip content={<button>Interactive</button>}><Button>Save</Button></Tooltip>;
+// @ts-expect-error Tooltip requires an element as its trigger.
+<Tooltip content="Help">Plain text</Tooltip>;
+// @ts-expect-error Placement must be a supported side.
+<Tooltip content="Help" side="center"><Button>Help</Button></Tooltip>;

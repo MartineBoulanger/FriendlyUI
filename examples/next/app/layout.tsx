@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <span aria-hidden='true' className='brand-icon'>
               fui
             </span>
-            Friendly UI<span className='version'>0.2</span>
+            Friendly UI<span className='version'>0.3</span>
           </Link>
           <Link className='header-link' href='/docs/installation/'>
             Documentation <span aria-hidden='true'>↗</span>

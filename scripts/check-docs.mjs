@@ -11,7 +11,7 @@ function walk(dir) {
   });
 }
 const pages = walk(root).filter(file => file.endsWith('.html'));
-for (const slug of ['installation', 'theming', 'server-and-client', 'button', 'card', 'input', 'textarea', 'label', 'badge', 'chip', 'close-button', 'drawer', 'accordion', 'checkbox', 'radio', 'select', 'heading', 'switch', 'separator', 'sidebar', 'search', 'modal', 'tabs', 'avatar', 'pagination', 'table', 'toast']) {
+for (const slug of ['installation', 'theming', 'server-and-client', 'button', 'card', 'input', 'textarea', 'label', 'badge', 'chip', 'close-button', 'drawer', 'tooltip', 'accordion', 'checkbox', 'radio', 'select', 'heading', 'switch', 'separator', 'sidebar', 'search', 'modal', 'tabs', 'avatar', 'pagination', 'table', 'toast']) {
   assert.ok(existsSync(join(root, 'docs', slug, 'index.html')), `Missing documentation page: ${slug}`);
 }
 let checked = 0;

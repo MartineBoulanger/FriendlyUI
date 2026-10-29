@@ -12,6 +12,7 @@ import {
 } from "@fwenthehunter/friendly-ui";
 import {
   Modal,
+  Tooltip,
   Tabs,
   Toast,
   Drawer,
@@ -251,6 +252,18 @@ export function DrawerExample() {
         </nav>
       </Drawer>
       <span id="drawer-overview">Close the drawer to return to the page.</span>
+    </div>
+  );
+}
+
+export function TooltipExample() {
+  return (
+    <div className="preview-row">
+      {(["top", "right", "bottom", "left"] as const).map(side => (
+        <Tooltip key={side} content="Save your changes" side={side}>
+          <Button variant="secondary">{side}</Button>
+        </Tooltip>
+      ))}
     </div>
   );
 }

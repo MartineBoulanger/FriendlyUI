@@ -366,3 +366,56 @@ test('modal and drawer forward custom sizes to their dialogs', async () => {
   assert.equal(container.querySelector('dialog').dataset.size,'wide');
   assert.ok(container.querySelector('.fui-drawer'));
 });
+
+test('tooltip describes its trigger, preserves child behavior, and dismisses with Escape', async () => {
+  const { Tooltip } = await import('@fwenthehunter/friendly-ui/client');
+  let clicks = 0;
+  const ref = { current: null };
+  await render(h(Tooltip, { content: 'Save the document', side: 'bottom' },
+    h('button', { ref, 'aria-describedby': 'existing-help', onClick: () => clicks++ }, 'Save')));
+  const trigger = container.querySelector('button');
+  const tip = container.querySelector('[role="tooltip"]');
+  assert.equal(ref.current, trigger);
+  assert.equal(tip.hidden, true);
+  assert.equal(trigger.getAttribute('aria-describedby'), `existing-help ${tip.id}`);
+  assert.equal(container.querySelector('.fui-tooltip').dataset.side, 'bottom');
+  await act(() => trigger.focus());
+  assert.equal(tip.hidden, false);
+  await click(trigger);
+  assert.equal(clicks, 1);
+  await key(trigger, 'Escape');
+  assert.equal(tip.hidden, true);
+  assert.equal(document.activeElement, trigger);
+  await act(() => trigger.blur());
+  await act(() => trigger.focus());
+  assert.equal(tip.hidden, false);
+  await act(() => trigger.blur());
+  assert.equal(tip.hidden, true);
+});
+
+test('tooltip handles pointer hover, focus overlap, touch, and Escape without focus', async () => {
+  const { Tooltip } = await import('@fwenthehunter/friendly-ui/client');
+  await render(h(Tooltip, { content: 'More information' }, h('button', {}, 'Help')));
+  const wrapper = container.querySelector('.fui-tooltip');
+  const trigger = container.querySelector('button');
+  const tip = container.querySelector('[role="tooltip"]');
+  const pointer = async (target, type, pointerType = 'mouse', relatedTarget = null) => act(() => {
+    const event = new window.Event(type, { bubbles: true });
+    Object.defineProperties(event, { pointerType: { value: pointerType }, relatedTarget: { value: relatedTarget } });
+    target.dispatchEvent(event);
+  });
+  await pointer(wrapper, 'pointerover', 'touch');
+  assert.equal(tip.hidden, true);
+  await pointer(wrapper, 'pointerover');
+  assert.equal(tip.hidden, false);
+  await pointer(trigger, 'pointerout', 'mouse', tip);
+  assert.equal(tip.hidden, false, 'moving into tooltip must keep it open');
+  await act(() => trigger.focus());
+  await pointer(wrapper, 'pointerout');
+  assert.equal(tip.hidden, false, 'focus keeps tooltip open after pointer leaves');
+  await act(() => trigger.blur());
+  assert.equal(tip.hidden, true);
+  await pointer(wrapper, 'pointerover');
+  await key(document.body, 'Escape');
+  assert.equal(tip.hidden, true, 'Escape dismisses a hovered tooltip without focusing its trigger');
+});

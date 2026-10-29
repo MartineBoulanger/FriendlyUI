@@ -205,3 +205,7 @@ Choose one command, replace the path, and keep using your app’s existing lockf
 ## Migrating to 0.2.0
 
 `SidebarDrawer` is now `Drawer`, and `SidebarDrawerProps` is now `DrawerProps`. Import `Drawer` from `@fwenthehunter/friendly-ui/client`. Update custom CSS selectors from `.fui-sidebar-drawer` to `.fui-drawer`. The behavior is unchanged.
+
+## Tooltip
+
+Import `Tooltip` from `@fwenthehunter/friendly-ui/client` and wrap a focusable control: `<Tooltip content="Save your changes" side="top"><Button>Save</Button></Tooltip>`. It opens on hover or focus and closes with Escape. Choose `top`, `right`, `bottom`, or `left`. Customize `--fui-tooltip-background` and `--fui-tooltip-foreground` in your theme. Keep essential help visible for touch users; this CSS-positioned tooltip does not automatically flip or escape clipped containers.

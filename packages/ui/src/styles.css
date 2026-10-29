@@ -677,3 +677,55 @@
     overflow-wrap: anywhere;
   }
 }
+
+@layer components {
+  .fui-tooltip {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  .fui-tooltip-content {
+    position: absolute;
+    z-index: 50;
+    width: max-content;
+    max-width: min(16rem, calc(100vw - 2rem));
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--fui-radius);
+    background: var(--fui-tooltip-background, var(--fui-foreground));
+    color: var(--fui-tooltip-foreground, var(--fui-background));
+    font-family: var(--fui-font);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: start;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .fui-tooltip-content[hidden] { display: none; }
+  /* Padding forms a hoverable bridge between the trigger and tooltip. */
+  .fui-tooltip-content::before { content: ""; position: absolute; }
+  .fui-tooltip[data-side="top"] > .fui-tooltip-content {
+    bottom: calc(100% + 0.5rem); left: 50%; transform: translateX(-50%);
+  }
+  .fui-tooltip[data-side="top"] > .fui-tooltip-content::before {
+    top: 100%; left: 0; width: 100%; height: 0.5rem;
+  }
+  .fui-tooltip[data-side="bottom"] > .fui-tooltip-content {
+    top: calc(100% + 0.5rem); left: 50%; transform: translateX(-50%);
+  }
+  .fui-tooltip[data-side="bottom"] > .fui-tooltip-content::before {
+    bottom: 100%; left: 0; width: 100%; height: 0.5rem;
+  }
+  .fui-tooltip[data-side="left"] > .fui-tooltip-content {
+    right: calc(100% + 0.5rem); top: 50%; transform: translateY(-50%);
+  }
+  .fui-tooltip[data-side="left"] > .fui-tooltip-content::before {
+    left: 100%; top: 0; height: 100%; width: 0.5rem;
+  }
+  .fui-tooltip[data-side="right"] > .fui-tooltip-content {
+    left: calc(100% + 0.5rem); top: 50%; transform: translateY(-50%);
+  }
+  .fui-tooltip[data-side="right"] > .fui-tooltip-content::before {
+    right: 100%; top: 0; height: 100%; width: 0.5rem;
+  }
+}
