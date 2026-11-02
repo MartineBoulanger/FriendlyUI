@@ -84,8 +84,12 @@ export function Label({ className, ...props }: ComponentPropsWithRef<"label">) {
   return <label {...props} className={cx("fui-label", className)} />;
 }
 
-export function Chip({ className, ...props }: ComponentPropsWithRef<"span">) {
-  return <span {...props} className={cx("fui-chip", className)} />;
+export type ChipVariant = ExtensibleVariant<"neutral" | "info" | "success" | "warning" | "error">;
+export type ChipProps = ComponentPropsWithRef<"span"> & {
+  variant?: ChipVariant;
+};
+export function Chip({ variant = "neutral", className, ...props }: ChipProps) {
+  return <span {...props} data-variant={variant} className={cx("fui-chip", className)} />;
 }
 
 export type BadgeProps = Omit<ComponentPropsWithRef<"span">, "content"> & {

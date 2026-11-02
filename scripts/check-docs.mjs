@@ -31,7 +31,7 @@ assert.match(readFileSync(join(root, 'docs/accordion/index.html'), 'utf8'), /<de
 assert.match(readFileSync(join(root, 'docs/server-and-client/index.html'), 'utf8'), /Clicked/);
 console.log(`Checked ${pages.length} static pages and ${checked} local links/assets (base path: ${base || '/'}).`);
 
-for (const slug of ['button', 'close-button', 'avatar', 'sidebar', 'drawer', 'modal', 'toast']) {
+for (const slug of ['button', 'chip', 'close-button', 'avatar', 'sidebar', 'drawer', 'modal', 'toast']) {
   const html = readFileSync(join(root, 'docs', slug, 'index.html'), 'utf8');
   assert.match(html, /Customize this component/, `Missing customisation guide for ${slug}`);
   assert.match(html, /app\/theme.css/, `Missing theme-file instructions for ${slug}`);

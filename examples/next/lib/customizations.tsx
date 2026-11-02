@@ -1,7 +1,7 @@
-import { Avatar, Button, CloseButton, Sidebar } from '@fwenthehunter/friendly-ui';
+import { Chip, Avatar, Button, CloseButton, Sidebar } from '@fwenthehunter/friendly-ui';
 import { Modal, Drawer } from '@fwenthehunter/friendly-ui/client';
 import { BrandToastExample } from '../app/component-examples';
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 
 type Example = {
   title: string;
@@ -11,6 +11,22 @@ type Example = {
   preview?: ReactNode;
 };
 export const customizations: Record<string, Example[]> = {
+  chip: [
+    {
+      title: 'Change a built-in variant',
+      css: ':root {\n  --fui-chip-success-background: #dcfce7;\n  --fui-chip-success-foreground: #14532d;\n  --fui-chip-success-border: #86efac;\n}',
+      usage: 'import { Chip } from "@fwenthehunter/friendly-ui";\n\n<Chip variant="success">Complete</Chip>',
+      note: 'Put these tokens in your app/theme.css after the package styles. They affect every success Chip and do not change Toast colors. These fixed colors apply in both light and dark themes. Add a matching @media (prefers-color-scheme: dark) rule if you want a different dark palette. The neutral tokens default to the theme background, foreground, and border.',
+      preview: <Chip variant='success' style={{'--fui-chip-success-background': '#dcfce7', '--fui-chip-success-foreground': '#14532d', '--fui-chip-success-border': '#86efac'} as CSSProperties}>Complete</Chip>,
+    },
+    {
+      title: 'Add a variant',
+      css: '.fui-chip[data-variant="brand"] {\n  --fui-chip-background: #ede9fe;\n  --fui-chip-foreground: #5b21b6;\n  --fui-chip-border: #c4b5fd;\n}',
+      usage: 'import { Chip } from "@fwenthehunter/friendly-ui";\n\n<Chip variant="brand">Featured</Chip>',
+      note: 'Choose any string name, define its colors in app/theme.css after the package styles, and pass that name to variant. No registration is needed. Unknown variant names keep the neutral appearance until you add their CSS. Use --fui-chip-background, --fui-chip-foreground, and --fui-chip-border inside your selector, as in this example.',
+      preview: <Chip variant='brand'>Featured</Chip>,
+    },
+  ],
   button: [
     {
       title: 'Add a variant',

@@ -58,3 +58,11 @@
     --fui-toast-border: #6366f1;
   }
 }
+
+@layer components {
+  .fui-chip[data-variant="brand"] {
+    --fui-chip-background: #ede9fe;
+    --fui-chip-foreground: #5b21b6;
+    --fui-chip-border: #c4b5fd;
+  }
+}

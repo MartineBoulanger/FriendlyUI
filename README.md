@@ -209,3 +209,39 @@ Choose one command, replace the path, and keep using your app’s existing lockf
 ## Tooltip
 
 Import `Tooltip` from `@fwenthehunter/friendly-ui/client` and wrap a focusable control: `<Tooltip content="Save your changes" side="top"><Button>Save</Button></Tooltip>`. It opens on hover or focus and closes with Escape. Choose `top`, `right`, `bottom`, or `left`. Customize `--fui-tooltip-background` and `--fui-tooltip-foreground` in your theme. Keep essential help visible for touch users; this CSS-positioned tooltip does not automatically flip or escape clipped containers.
+
+## Chip variants
+
+`Chip` is server-compatible and defaults to `variant="neutral"`, which uses the theme background and foreground. Built-in variants are `neutral`, `info` (blue), `success` (green), `warning` (orange/yellow), and `error` (red), with light/dark theme palettes.
+
+```tsx
+import { Chip } from "@fwenthehunter/friendly-ui";
+
+<Chip>Neutral</Chip>
+<Chip variant="info">Information</Chip>
+<Chip variant="success">Complete</Chip>
+<Chip variant="warning">Needs attention</Chip>
+<Chip variant="error">Failed</Chip>
+<Chip variant="brand">Featured</Chip>
+```
+
+Change built-in colors or add your own variant in `app/theme.css`, imported after the package styles:
+
+```css
+/* Overrides all success Chips without changing Toast colors. */
+:root {
+  --fui-chip-success-background: #dcfce7;
+  --fui-chip-success-foreground: #14532d;
+  --fui-chip-success-border: #86efac;
+}
+
+@layer components {
+  .fui-chip[data-variant="brand"] {
+    --fui-chip-background: #ede9fe;
+    --fui-chip-foreground: #5b21b6;
+    --fui-chip-border: #c4b5fd;
+  }
+}
+```
+
+Every built-in variant has `--fui-chip-<variant>-background`, `--fui-chip-<variant>-foreground`, and `--fui-chip-<variant>-border` tokens. Custom variants need no registration; unknown names keep the neutral appearance until their CSS is provided. These example overrides use the same colors in both themes; add a dark media query if desired. `ChipVariant` and `ChipProps` are exported for typed wrappers.

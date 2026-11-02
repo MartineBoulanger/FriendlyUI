@@ -99,12 +99,32 @@
   .fui-chip {
     display: inline-flex;
     padding: 0.25rem 0.625rem;
-    border: 1px solid var(--fui-border);
+    border: 1px solid var(--fui-chip-border, var(--fui-chip-neutral-border, var(--fui-border)));
     border-radius: 999px;
-    background: var(--fui-subtle);
-    color: var(--fui-foreground);
+    background: var(--fui-chip-background, var(--fui-chip-neutral-background, var(--fui-background)));
+    color: var(--fui-chip-foreground, var(--fui-chip-neutral-foreground, var(--fui-foreground)));
     font-size: 0.75rem;
     line-height: 1.5;
+  }
+  .fui-chip[data-variant="info"] {
+    --fui-chip-background: var(--fui-chip-info-background, var(--fui-background));
+    --fui-chip-foreground: var(--fui-chip-info-foreground, var(--fui-foreground));
+    --fui-chip-border: var(--fui-chip-info-border, var(--fui-border));
+  }
+  .fui-chip[data-variant="success"] {
+    --fui-chip-background: var(--fui-chip-success-background, var(--fui-background));
+    --fui-chip-foreground: var(--fui-chip-success-foreground, var(--fui-foreground));
+    --fui-chip-border: var(--fui-chip-success-border, var(--fui-border));
+  }
+  .fui-chip[data-variant="warning"] {
+    --fui-chip-background: var(--fui-chip-warning-background, var(--fui-background));
+    --fui-chip-foreground: var(--fui-chip-warning-foreground, var(--fui-foreground));
+    --fui-chip-border: var(--fui-chip-warning-border, var(--fui-border));
+  }
+  .fui-chip[data-variant="error"] {
+    --fui-chip-background: var(--fui-chip-error-background, var(--fui-background));
+    --fui-chip-foreground: var(--fui-chip-error-foreground, var(--fui-foreground));
+    --fui-chip-border: var(--fui-chip-error-border, var(--fui-border));
   }
   .fui-accordion {
     border: 1px solid var(--fui-border);

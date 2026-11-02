@@ -6,7 +6,7 @@ import { JSDOM } from 'jsdom';
 import { Badge, Chip, Button, Avatar } from '@fwenthehunter/friendly-ui';
 
 test('Chip retains the compact label and native props', () => {
-  assert.equal(render(h(Chip, {className:'custom','data-status':'pending'}, 'Pending')), '<span data-status="pending" class="fui-chip custom">Pending</span>');
+  assert.equal(render(h(Chip, {className:'custom','data-status':'pending'}, 'Pending')), '<span data-status="pending" data-variant="neutral" class="fui-chip custom">Pending</span>');
 });
 test('Badge wraps controls, caps the visible count and preserves its accessible value', () => {
   const {window} = new JSDOM(render(h(Badge, {content:120,position:'bottom-left'},h(Button,{},'Notifications'))));
@@ -28,4 +28,15 @@ test('Badge supports named status dots and decorative dots without count text', 
   const html=render(h(Badge,{dot:true,label:'Online',position:'bottom-right'},h(Avatar,{alt:'Ada Lovelace'})));
   assert.match(html,/fui-avatar/);assert.match(html,/data-dot="true" role="img" aria-label="Online"/);
   assert.match(render(h(Badge,{dot:true},'Child')),/data-dot="true" aria-hidden="true"/);
+});
+
+test('Chip supports semantic and application-defined variants on the server', () => {
+  for (const variant of ['neutral', 'info', 'success', 'warning', 'error', 'brand']) {
+    const {window} = new JSDOM(render(h(Chip, {variant, title:'Status'}, 'Ready')));
+    const chip = window.document.querySelector('.fui-chip');
+    assert.equal(chip.dataset.variant, variant);
+    assert.equal(chip.textContent, 'Ready');
+    assert.equal(chip.title, 'Status');
+    window.close();
+  }
 });

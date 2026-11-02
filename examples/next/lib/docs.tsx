@@ -310,19 +310,24 @@ export const docs: Doc[] = [
     title: "Chip",
     group: "Components",
     description: "A compact label for status, categories, and metadata.",
-    code: `import { Chip } from '@fwenthehunter/friendly-ui';\n\n<Chip>In progress</Chip>`,
+    code: `import { Chip } from '@fwenthehunter/friendly-ui';\n\n<Chip>Neutral</Chip>\n<Chip variant="info">Information</Chip>\n<Chip variant="success">Complete</Chip>\n<Chip variant="warning">Needs attention</Chip>\n<Chip variant="error">Failed</Chip>`,
     preview: (
       <div className="preview-row">
-        <Chip>In progress</Chip>
-        <Chip>Version 0.3</Chip>
+        <Chip>Neutral</Chip>
+        <Chip variant="info">Information</Chip>
+        <Chip variant="success">Complete</Chip>
+        <Chip variant="warning">Needs attention</Chip>
+        <Chip variant="error">Failed</Chip>
       </div>
     ),
     content: (
-      <p>
-        Chip renders a styled span for short labels. Chip is
-        not interactive and does not announce changes automatically.
-      </p>
+      <>
+        <p>Chip renders a server-compatible span for short labels. The default neutral variant uses the theme background, foreground, and border. Info uses blue tints, success green, warning orange/yellow, and error red. Semantic colors adapt to the system light/dark theme.</p>
+        <p>Keep a meaningful text label so color is not the only indication of status. Chip is not interactive and does not announce changes automatically.</p>
+        <p>Each built-in variant has --fui-chip-VARIANT-background, --fui-chip-VARIANT-foreground, and --fui-chip-VARIANT-border tokens, where VARIANT is neutral, info, success, warning, or error. Override these in your theme file, or add your own string variant as shown below. No registration or client wrapper is needed. ChipVariant and ChipProps are exported for your own wrappers.</p>
+      </>
     ),
+    props: [["variant", "neutral | info | success | warning | error | custom string", "neutral"]],
   },
   {
     slug: "badge",

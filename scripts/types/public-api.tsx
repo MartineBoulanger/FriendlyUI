@@ -50,3 +50,11 @@ import { Tooltip } from '@fwenthehunter/friendly-ui/client';
 <Tooltip content="Help">Plain text</Tooltip>;
 // @ts-expect-error Placement must be a supported side.
 <Tooltip content="Help" side="center"><Button>Help</Button></Tooltip>;
+
+import { Chip, type ChipVariant, type ChipProps } from '@fwenthehunter/friendly-ui';
+const customChipVariant: ChipVariant = 'brand';
+const customChipProps: ChipProps = { variant: customChipVariant, title: 'Status' };
+<Chip {...customChipProps}>Ready</Chip>;
+<Chip variant="success">Complete</Chip>;
+// @ts-expect-error Chip variant names must be strings.
+<Chip variant={42}>Invalid</Chip>;
