@@ -10,7 +10,12 @@ function walk(dir) {
     return statSync(file).isDirectory() ? walk(file) : [file];
   });
 }
-const pages = walk(root).filter(file => file.endsWith('.html'));
+// Storybook owns its internal routes and relative asset URLs.
+const pages = walk(root).filter(file => file.endsWith('.html') && !file.startsWith(join(root, 'storybook') + '/'));
+for (const file of ['index.html', 'iframe.html', 'index.json']) {
+  assert.ok(existsSync(join(root, 'storybook', file)), `Missing Storybook artifact: ${file}`);
+}
+assert.match(readFileSync(join(root, 'index.html'), 'utf8'), /href="[^"]*\/storybook\/"/, 'Missing Storybook navigation link');
 for (const slug of ['installation', 'theming', 'server-and-client', 'button', 'card', 'input', 'textarea', 'label', 'badge', 'chip', 'close-button', 'drawer', 'tooltip', 'accordion', 'checkbox', 'radio', 'select', 'heading', 'switch', 'separator', 'sidebar', 'search', 'modal', 'tabs', 'avatar', 'pagination', 'table', 'toast']) {
   assert.ok(existsSync(join(root, 'docs', slug, 'index.html')), `Missing documentation page: ${slug}`);
 }

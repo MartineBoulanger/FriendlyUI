@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </span>
             Friendly UI<span className='version'>0.4</span>
           </Link>
+          <a className='header-link' href={`${process.env.DOCS_BASE_PATH || ''}/storybook/`}>Storybook <span aria-hidden='true'>↗</span></a>
           <Link className='header-link' href='/docs/installation/'>
             Documentation <span aria-hidden='true'>↗</span>
           </Link>

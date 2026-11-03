@@ -25,9 +25,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name: Build documentation
-        run: npm run build
+        run: npm run build:pages
         env:
           DOCS_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - run: npm run typecheck:storybook
       - run: npm run typecheck
       - name: Check exported routes and assets
         run: npm run check:docs
@@ -59,3 +60,4 @@ jobs:
           curl --fail --silent --show-error --location --retry 12 --retry-delay 5 --retry-all-errors "${DOCS_URL%/}/" -o /dev/null
           curl --fail --silent --show-error --location --retry 12 --retry-delay 5 --retry-all-errors "${DOCS_URL%/}/docs/installation/" -o /dev/null
           curl --fail --silent --show-error --location --retry 12 --retry-delay 5 --retry-all-errors "${DOCS_URL%/}/docs/button/" -o /dev/null
+          curl --fail --silent --show-error --location --retry 12 --retry-delay 5 --retry-all-errors "${DOCS_URL%/}/storybook/" -o /dev/null

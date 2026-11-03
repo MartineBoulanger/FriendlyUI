@@ -245,3 +245,16 @@ Change built-in colors or add your own variant in `app/theme.css`, imported afte
 ```
 
 Every built-in variant has `--fui-chip-<variant>-background`, `--fui-chip-<variant>-foreground`, and `--fui-chip-<variant>-border` tokens. Custom variants need no registration; unknown names keep the neutral appearance until their CSS is provided. These example overrides use the same colors in both themes; add a dark media query if desired. `ChipVariant` and `ChipProps` are exported for typed wrappers.
+
+## Storybook
+
+Browse the [component Storybook](https://martineboulanger.github.io/FriendlyUI/storybook/) for live examples, editable props, and light/dark previews. Table primitives are documented together in the Table story.
+
+From the repository root:
+
+```sh
+npm install
+npm run storybook
+```
+
+Storybook runs at http://localhost:6006. Stories live in `stories/` and use the package source and shipped styles. `npm run build:storybook` creates `storybook-static/`; `npm run build:pages` builds the documentation and includes Storybook under `storybook/`. The Documentation workflow validates both and deploys them to GitHub Pages on pushes to `main`.

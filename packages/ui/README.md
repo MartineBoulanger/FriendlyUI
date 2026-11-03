@@ -15,7 +15,11 @@ The documentation is hosted online and does not need to run in your application.
 import { Button, Card } from '@fwenthehunter/friendly-ui';
 
 export default function Page() {
-  return <Card><Button>Get started</Button></Card>;
+  return (
+    <Card>
+      <Button>Get started</Button>
+    </Card>
+  );
 }
 ```
 
@@ -39,18 +43,22 @@ MIT. See LICENSE in the package.
 
 ## Tooltip
 
-```tsx
-import { Button } from "@fwenthehunter/friendly-ui";
-import { Tooltip } from "@fwenthehunter/friendly-ui/client";
+Added Tooltip in version 0.3.0
 
-<Tooltip content="Save your changes" side="top">
+```tsx
+import { Button } from '@fwenthehunter/friendly-ui';
+import { Tooltip } from '@fwenthehunter/friendly-ui/client';
+
+<Tooltip content='Save your changes' side='top'>
   <Button>Save</Button>
-</Tooltip>
+</Tooltip>;
 ```
 
 Opens on hover or keyboard focus; Escape dismisses it. Choose top, right, bottom, or left. Customize `--fui-tooltip-background` and `--fui-tooltip-foreground` in your theme. Keep essential instructions visible for touch users. Positioning uses CSS without automatic edge detection or a portal.
 
 ## Chip variants
+
+Changes in version 0.4.0
 
 `Chip` is server-compatible and defaults to `variant="neutral"`, which uses the theme background and foreground. Built-in variants are `neutral`, `info` (blue), `success` (green), `warning` (orange/yellow), and `error` (red), with light/dark theme palettes.
 
@@ -76,7 +84,7 @@ Change built-in colors or add your own variant in `app/theme.css`, imported afte
 }
 
 @layer components {
-  .fui-chip[data-variant="brand"] {
+  .fui-chip[data-variant='brand'] {
     --fui-chip-background: #ede9fe;
     --fui-chip-foreground: #5b21b6;
     --fui-chip-border: #c4b5fd;
@@ -85,3 +93,16 @@ Change built-in colors or add your own variant in `app/theme.css`, imported afte
 ```
 
 Every built-in variant has `--fui-chip-<variant>-background`, `--fui-chip-<variant>-foreground`, and `--fui-chip-<variant>-border` tokens. Custom variants need no registration; unknown names keep the neutral appearance until their CSS is provided. These example overrides use the same colors in both themes; add a dark media query if desired. `ChipVariant` and `ChipProps` are exported for typed wrappers.
+
+## Storybook
+
+Browse the [component Storybook](https://martineboulanger.github.io/FriendlyUI/storybook/) for live examples, editable props, and light/dark previews. Table primitives are documented together in the Table story.
+
+From the repository root:
+
+```sh
+npm install
+npm run storybook
+```
+
+Storybook runs at http://localhost:6006. Stories live in `stories/` and use the package source and shipped styles. `npm run build:storybook` creates `storybook-static/`; `npm run build:pages` builds the documentation and includes Storybook under `storybook/`. The Documentation workflow validates both and deploys them to GitHub Pages on pushes to `main`.
